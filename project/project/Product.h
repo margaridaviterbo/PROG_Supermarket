@@ -1,8 +1,7 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
-
-#include <iostream>
-#include "Client.h"
+#include<iostream>
+#include<string>
 
 using namespace std;
 

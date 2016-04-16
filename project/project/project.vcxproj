@@ -67,11 +67,13 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Supermarket.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="Supermarket.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
