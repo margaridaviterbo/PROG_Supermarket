@@ -16,6 +16,7 @@ private:
 	vector<Product> products;
 	vector<Transaction> transactions;
 public:
+	Supermarket();
 	void readClients();
 	void readProducts();
 	void readTransactions();

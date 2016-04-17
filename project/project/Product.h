@@ -7,12 +7,14 @@ using namespace std;
 
 class Product {
 private:
-	float price;
 	string name;
+	float price;
+	
 public:
-	Product();
-	float getPrice();
+	Product(string name, float price);
 	string getName();
+	float getPrice();
+	
 };
 
 #endif

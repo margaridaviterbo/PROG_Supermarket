@@ -12,9 +12,10 @@ private:
 	string name;
 	double amountSpent;
 public:
+	Client(int id, string name, double amountSpent);
 	int getId();
 	string getName();
-	double getAmountSpent;
+	double getAmountSpent();
 
 };
 

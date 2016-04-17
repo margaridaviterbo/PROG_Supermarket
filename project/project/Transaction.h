@@ -14,10 +14,10 @@ private:
 	string date;	//TODO mudar data para objeto de uma classe provavelmente pre definida Date
 	vector<Product> products;
 public:
-	Transaction();
+	Transaction(int id, int clientId, string date, vector<Product> products);
 	int getId();
 	int getClientId();
-	string gatDate();
+	string getDate();
 	vector<Product> getProducts();
 };
 
