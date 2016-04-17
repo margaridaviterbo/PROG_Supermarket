@@ -70,7 +70,8 @@ void Supermarket::readTransactions(){
 
 	int id;
 	int clientId;
-	string date;	//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	string d;	
+	Date date;
 	string productName;
 	string trash;
 	ifstream infile;
@@ -85,7 +86,8 @@ void Supermarket::readTransactions(){
 			cin >> id;
 			cin >> clientId;
 			getline(infile, trash, ';');
-			getline(infile, date, ';');
+			getline(infile, d, ';');
+			date=Date(d);
 			transactions.push_back(Transaction(id, clientId, date));
 			getline(infile, productName, ',');
 			while (productName != "\n"){

@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Transaction::Transaction(int id, int clientId, string date) {
+Transaction::Transaction(int id, int clientId, Date date) {
 	this->id = id;
 	this->clientId = clientId;
 	this->date = date;
@@ -18,7 +18,7 @@ int Transaction::getClientId(){
 	return clientId;
 }
 
-string Transaction::getDate(){
+Date Transaction::getDate(){
 	return date;
 }
 

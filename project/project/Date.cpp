@@ -2,11 +2,13 @@
 
 using namespace std;
 
+Date::Date(){
+
+}
+
 Date::Date(string date){
 	this->date = date;
-	setDay();
-	setMonth();
-	setYear();
+	setDayMonthYear();
 }
 
 Date::Date(int day, int month, int year){
@@ -36,10 +38,13 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDay(){
-	string d;
-	getline(date, )
+void Date::setDayMonthYear(){
+	istringstream instr(date);
+
+	instr >> day >> month >> year;
 }
+
+
 
 
 

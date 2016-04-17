@@ -14,6 +14,7 @@ private:
 	int month;
 	int year;
 public:
+	Date();
 	Date(string date);
 	Date(int day, int month, int year);
 	string getDate();
@@ -21,9 +22,7 @@ public:
 	int getMonth();
 	int getYear();
 	void setDate();
-	void setDay();
-	void setMonth();
-	void setYear();
+	void setDayMonthYear();
 };
 
 #endif

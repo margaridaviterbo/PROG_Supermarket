@@ -67,7 +67,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Product.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Supermarket.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
