@@ -1,9 +1,10 @@
-//TODO definir funções
 
 #include"Product.h"
+#include"Supermarket.h";
 
 
 using namespace std;
+
 
 Product::Product(string name, float price){
 	this->name = name;
@@ -17,3 +18,5 @@ string Product::getName(){
 float Product::getPrice(){
 	return price;
 }
+
+

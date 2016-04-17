@@ -4,11 +4,10 @@ using namespace std;
 
 
 
-Transaction::Transaction(int id, int clientId, string date, vector<Product> products) {
+Transaction::Transaction(int id, int clientId, string date) {
 	this->id = id;
 	this->clientId = clientId;
 	this->date = date;
-	this->products = products;
 }
 
 int Transaction::getId(){
@@ -23,7 +22,11 @@ string Transaction::getDate(){
 	return date;
 }
 
-vector<Product> Transaction::getProducts(){
+vector<Product*> Transaction::getProducts(){
 	return products;
+}
+
+void Transaction::addProduct(Product* product){
+	products.push_back(product);
 }
 
