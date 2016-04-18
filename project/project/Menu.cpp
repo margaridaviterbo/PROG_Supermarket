@@ -18,7 +18,6 @@ int main(){
 	option opt;
 	int op;
 	Supermarket supermarket;
-	
 	cout << "WELCOME TO SUPERMARKET MANAGER!!!\n";
 	cout << "_________________________________\n\n";
 	cout << "1 - Cients\n";
