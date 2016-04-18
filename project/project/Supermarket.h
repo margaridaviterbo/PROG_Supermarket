@@ -24,6 +24,9 @@ public:
 	void readClients();
 	void readProducts();
 	void readTransactions();
+	void printClients();
+	void printProducts();
+	void printTransactions();
 	Product* getProduct(string productName);
 
 };

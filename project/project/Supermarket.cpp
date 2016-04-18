@@ -108,3 +108,47 @@ Product* Supermarket::getProduct(string productName){
 	return products.at(i);
 }
 
+void Supermarket::printClients(){
+	int i;
+
+	cout << "\t\t\tCLIENTS\n";
+	cout << "\t\t\t_______\n";
+	cout << "\tID\t|\t\t\t\tName\t\t\t\t|\tAmount Spent\n";
+	cout << "_________________________________________________________________________________________________________________________________";
+
+	for (i = 0; i < clients.size(); i++){
+		cout << "\t" << clients.at(i).getId() << "\t|\t\t\t\t" << clients.at(i).getName() << "\t\t\t\t|\t" << clients.at(i).getAmountSpent() << "\n";
+	}
+}
+
+void Supermarket::printProducts(){
+	int i;
+
+	cout << "\t\t\tPRODUCTS\n";
+	cout << "\t\t\t________\n";
+	cout << "\t\t\tName\t\t\t|\tPrice\n";
+	cout << "_________________________________________";
+
+	for (i = 0; i < products.size(); i++){
+		cout << "\t\t\t" << products.at(i)->getName() << "\t\t\t|\t" << products.at(i)->getPrice() << "\n";
+	}
+}
+
+void Supermarket::printTransactions(){
+	int i,j;
+	string print;
+
+	cout << "\t\t\tTRANSACTIONS\n";
+	cout << "\t\t\t____________\n";
+	cout << "\tID\t|\tClient ID\t|\tDate\t|\t\t\t\t\t\t\t\t\t\tPorducts\n";
+	cout << "_________________________________________________________________________________________________________________________________";
+
+	for (i = 0; i < transactions.size(); i++){
+		print = "\t" + transactions.at(i).getId() + '\t' + '|' + '\t' + transactions.at(i).getClientId() + '\t' + '|' + '\t' + transactions.at(i).getDate().getDate() + "\t|\t\t\t";
+		print = print + (transactions.at(i).getProducts()).at(0)->getName();
+		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
+			print = print + ", " + transactions.at(i).getProducts().at(j)->getName();
+		}
+		cout << print << endl;
+	}
+}
