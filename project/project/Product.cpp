@@ -1,6 +1,6 @@
 
 #include"Product.h"
-#include"Supermarket.h";
+#include"Supermarket.h"
 
 
 using namespace std;

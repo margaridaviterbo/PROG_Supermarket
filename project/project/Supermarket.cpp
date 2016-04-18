@@ -29,7 +29,7 @@ void Supermarket:: readClients(){
 	ifstream infile;
 	infile.open("Clients.csv");
 	if (infile.fail()){
-		cerr << "Error opening fie " << "Clients.csv";
+		cerr << "Error opening file " << "Clients.csv";
 		exit(1);
 	}
 	else{

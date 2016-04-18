@@ -14,7 +14,6 @@ using namespace std;
 
 int main(){
 	enum option { CLIENTS, PRODUCTS, TRANSACTIONS };
-	option opt;
 	int op;
 	Supermarket supermarket;
 	
@@ -26,14 +25,7 @@ int main(){
 	cout << "Please choose an option:\n";
 	cin >> op;
 	
-	switch (op){
-	case 1:
-		opt = CLIENTS;
-	case 2:
-		opt = PRODUCTS;
-	case 3:
-		opt = TRANSACTIONS;
-	}
+	op--;
 	
 	switch (op) {
 	case CLIENTS:
@@ -46,6 +38,7 @@ int main(){
 		supermarket.printTransactions();
 		break;
 	}
+
 
 	system("pause");
 	return 0;
