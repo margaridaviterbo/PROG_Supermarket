@@ -29,7 +29,7 @@ void Supermarket:: readClients(){
 	ifstream infile;
 	infile.open("Clients.csv");
 	if (infile.fail()){
-		cerr << "Error opening file " << "Clients.csv";
+		cerr << "Error opening file Clients.csv";
 		exit(1);
 	}
 	else{
@@ -52,7 +52,7 @@ void Supermarket::readProducts(){
 
 	infile.open("Products.csv");
 	if (infile.fail()){
-		cerr << "Error opening file " << "Products.csv";
+		cerr << "Error opening file Products.csv";
 		exit(1);
 	}
 	else{
@@ -78,7 +78,7 @@ void Supermarket::readTransactions(){
 
 	infile.open("Transactions.csv");
 	if (infile.fail()){
-		cerr << "Error opening file " << "Transactions.csv";
+		cerr << "Error opening file Transactions.csv";
 		exit(1);
 	}
 	else{

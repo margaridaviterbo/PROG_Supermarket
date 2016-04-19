@@ -78,6 +78,11 @@
     <ClInclude Include="Supermarket.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Clients.csv" />
+    <None Include="Products.csv" />
+    <None Include="Transactions.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
