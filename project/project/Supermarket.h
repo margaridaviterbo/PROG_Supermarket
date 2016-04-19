@@ -4,6 +4,7 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<sstream>
 #include"Client.h"
 #include"Product.h"
 #include"Transaction.h"

@@ -67,11 +67,13 @@ void Supermarket::readProducts(){
 }
 
 void Supermarket::readTransactions(){
-
+	int i, pos_i, pos_f;
 	int id;
 	int clientId;
 	string d;	
 	Date date;
+	string strProducts;
+	istringstream products_str(strProducts);
 	string productName;
 	string trash;
 	ifstream infile;
@@ -82,18 +84,31 @@ void Supermarket::readTransactions(){
 		exit(1);
 	}
 	else{
-		cout << "transactions\n";
 		while (!infile.eof()){
-			infile>> id;		// TODO CORRIGIR isto lê as virgulas
+			infile>> id;	
+			getline(infile, trash, ';');
 			infile >> clientId;
 			getline(infile, trash, ';');
 			getline(infile, d, ';');
 			date=Date(d);
 			transactions.push_back(Transaction(id, clientId, date));
-			getline(infile, productName, ',');
-			while (productName != "\n"){
+			getline(infile, strProducts);
+			pos_i = products_str.tellg();
+			
+			//TODO fazer ciclo para ler 
+			i = 0;
+			//while (i < products_str.gcount()){
+			//	if (products_str.get() == ',')
+
+				
+				//productName=products_str.
+				//i++;
+			//}
+
+			/*while (productName != "\n"){			loop infinito
 				transactions.back().addProduct(getProduct(productName));
-				getline(infile, productName, ',');
+				getline(infile, trash, ',');
+				getline(infile, productName, ',');*/
 			}
 		}
 	}
@@ -103,7 +118,9 @@ void Supermarket::readTransactions(){
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
-	while (products.at(i)->getName() != productName){
+   	while ( i<products.size()){
+		if ((products.at(i)->getName()) != productName)
+			break;
 		i++;
 	}
 	return products.at(i);
