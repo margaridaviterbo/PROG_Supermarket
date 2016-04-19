@@ -58,7 +58,7 @@ void Supermarket::readProducts(){
 	else{
 		while (!infile.eof()){
 			getline(infile, name, ';');
-			cin >> price;
+			infile>> price;
 			getline(infile, trash, '\n');
 			products.push_back(new Product(name, price));
 		}
@@ -78,13 +78,14 @@ void Supermarket::readTransactions(){
 
 	infile.open("Transactions.csv");
 	if (infile.fail()){
-		cerr << "Error opening file Transactions.csv";
+		cerr << "Error opening file " << "Transactions.csv";
 		exit(1);
 	}
 	else{
+		cout << "transactions\n";
 		while (!infile.eof()){
-			cin >> id;
-			cin >> clientId;
+			infile>> id;		// TODO CORRIGIR isto lê as virgulas
+			infile >> clientId;
 			getline(infile, trash, ';');
 			getline(infile, d, ';');
 			date=Date(d);

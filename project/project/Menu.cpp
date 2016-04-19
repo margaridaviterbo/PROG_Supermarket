@@ -26,7 +26,6 @@ int main(){
 	cin >> op;
 	
 	op--;
-	
 	switch (op) {
 	case CLIENTS:
 		supermarket.printClients();
