@@ -175,12 +175,22 @@ void Supermarket::printTransactions(){
 	int i,j;
 	string print;
 
-	cout << "\t\t\tTRANSACTIONS\n";
-	cout << "\t\t\t____________\n";
-	cout << "\tID\t|\tClient ID\t|\tDate\t|\t\t\t\t\t\t\t\t\t\tPorducts\n";
-	cout << "_________________________________________________________________________________________________________________________________";
+	cout << setw(50) << "TRANSACTIONS\n";
+	cout << "____________________________________________________________________________________________________________________________\n\n";
 
-	for (i = 0; i < transactions.size(); i++){
+	cout << setw(10) << "ID" <<
+		setw(10) << "|" <<
+		setw(20) << "Client ID" << 
+		setw(10) << "|" <<
+		setw(15) << "Date" <<
+		setw(15) << "|" <<
+		setw(40) << "Products" <<
+		setw(40) << '\n';
+
+	cout << "____________________________________________________________________________________________________________________________\n";
+
+
+	/*for (i = 0; i < transactions.size(); i++){
 		print = "\t" + transactions.at(i).getId() + '\t' + '|' + '\t' + transactions.at(i).getClientId() + '\t' + '|' + '\t' + transactions.at(i).getDate().getDate() + "\t|\t\t\t";
 		print = print + (transactions.at(i).getProducts()).at(0)->getName();
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
@@ -188,31 +198,20 @@ void Supermarket::printTransactions(){
 		}
 		cout << print << endl;
 	}
+*/
+	for (i = 0; i < transactions.size(); i++){
 
-
-	
-	cout << setw(50) << "TRANSACTIONS\n";
-	cout << "_________________________________________________________________________________________\n\n";
-
-	cout << setw(10) << "ID" <<
-		setw(10) << "Client ID" << 
-		setw(10) << "|" <<
-		setw(30) << "Name" <<
-		setw(20) << "|" <<
-		setw(15) << "Amount Spent" <<
-		setw(10) << '\n';
-
-	cout << "_________________________________________________________________________________________\n";
-
-
-	for (i = 0; i < clients.size(); i++){
-
-		cout << setw(10) << clients.at(i).getId() <<
+		cout << setw(10) << transactions.at(i).getId() <<
 			setw(10) << "|" <<
-			setw(40) << clients.at(i).getName() <<
-			setw(10) << "|" <<
-			setw(10) << clients.at(i).getAmountSpent() <<
-			setw(10) << '\n';
+			setw(15) << transactions.at(i).getClientId() <<
+			setw(15) << "|" <<
+			setw(20) << transactions.at(i).getDate().getDate() <<
+			setw(20) << "|" <<
+			setw(10) << (transactions.at(i).getProducts()).at(0)->getName();
+		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
+			cout << ", " << (transactions.at(i).getProducts()).at(j)->getName();
+		}
+		cout << endl;
 	}
 
 
