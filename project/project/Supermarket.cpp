@@ -121,7 +121,7 @@ Product* Supermarket::getProduct(string productName){
 
 void Supermarket::printClients(){
 	int i;
-	cout << "\n\n\n\n";
+	
 	cout << setw(50) << "CLIENTS\n";
 	cout << "_________________________________________________________________________________________\n\n";
 
@@ -144,6 +144,7 @@ void Supermarket::printClients(){
 			setw(10) << clients.at(i).getAmountSpent() <<
 			setw(10) << '\n';
 	}
+	cout << "\n\n";
 }
 
 void Supermarket::printProducts(){
@@ -187,4 +188,32 @@ void Supermarket::printTransactions(){
 		}
 		cout << print << endl;
 	}
+
+
+	
+	cout << setw(50) << "TRANSACTIONS\n";
+	cout << "_________________________________________________________________________________________\n\n";
+
+	cout << setw(10) << "ID" <<
+		setw(10) << "Client ID" << 
+		setw(10) << "|" <<
+		setw(30) << "Name" <<
+		setw(20) << "|" <<
+		setw(15) << "Amount Spent" <<
+		setw(10) << '\n';
+
+	cout << "_________________________________________________________________________________________\n";
+
+
+	for (i = 0; i < clients.size(); i++){
+
+		cout << setw(10) << clients.at(i).getId() <<
+			setw(10) << "|" <<
+			setw(40) << clients.at(i).getName() <<
+			setw(10) << "|" <<
+			setw(10) << clients.at(i).getAmountSpent() <<
+			setw(10) << '\n';
+	}
+
+
 }
