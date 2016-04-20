@@ -73,8 +73,7 @@ void Supermarket::readTransactions(){
 	string d;	
 	Date date;
 	string strProducts;
-	istringstream products_str(strProducts);
-	string productName;
+	string productName="";
 	string trash;
 	ifstream infile;
 
@@ -85,30 +84,24 @@ void Supermarket::readTransactions(){
 	}
 	else{
 		while (!infile.eof()){
-			infile>> id;	
+			infile >> id;
 			getline(infile, trash, ';');
 			infile >> clientId;
 			getline(infile, trash, ';');
 			getline(infile, d, ';');
-			date=Date(d);
+			date = Date(d);
 			transactions.push_back(Transaction(id, clientId, date));
 			getline(infile, strProducts);
-			pos_i = products_str.tellg();
 			
-			//TODO fazer ciclo para ler 
 			i = 0;
-			//while (i < products_str.gcount()){
-			//	if (products_str.get() == ',')
-
-				
-				//productName=products_str.
-				//i++;
-			//}
-
-			/*while (productName != "\n"){			loop infinito
-				transactions.back().addProduct(getProduct(productName));
-				getline(infile, trash, ',');
-				getline(infile, productName, ',');*/
+			while (i < strProducts.size()){
+				if (strProducts.at(i) != ',')
+					productName = productName + strProducts.at(i);
+				else{
+					transactions.back().addProduct(getProduct(productName));
+					productName = "";
+				}
+				i++;
 			}
 		}
 	}
