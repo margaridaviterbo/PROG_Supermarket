@@ -121,14 +121,14 @@ Product* Supermarket::getProduct(string productName){
 
 void Supermarket::printClients(){
 	int i;
-
+	cout << "\n\n\n\n";
 	cout << "\t\t\tCLIENTS\n";
-	cout << "\t\t\t_______\n";
-	cout << "\tID\t|\t\t\t\tName\t\t\t\t|\tAmount Spent\n";
-	cout << "_________________________________________________________________________________________________________________________________";
+	cout << "_________________________________________________________________________________________\n\n";
+	cout << "\tID\t|\t\t\tName\t\t\t|\tAmount Spent\n";
+	cout << "________________________________________________________________________________________\n";
 
 	for (i = 0; i < clients.size(); i++){
-		cout << "\t" << clients.at(i).getId() << "\t|\t\t\t\t" << clients.at(i).getName() << "\t\t\t\t|\t" << clients.at(i).getAmountSpent() << "\n";
+		cout <<"\t"<< clients.at(i).getId() << "\t|\t" << clients.at(i).getName() << "\t\t|\t" << clients.at(i).getAmountSpent() << "\n";
 	}
 }
 
@@ -138,7 +138,7 @@ void Supermarket::printProducts(){
 	cout << "\t\t\tPRODUCTS\n";
 	cout << "\t\t\t________\n";
 	cout << "\t\t\tName\t\t\t|\tPrice\n";
-	cout << "_________________________________________";
+	cout << "_________________________________________\n";
 
 	for (i = 0; i < products.size(); i++){
 		cout << "\t\t\t" << products.at(i)->getName() << "\t\t\t|\t" << products.at(i)->getPrice() << "\n";
