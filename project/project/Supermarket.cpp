@@ -122,26 +122,51 @@ Product* Supermarket::getProduct(string productName){
 void Supermarket::printClients(){
 	int i;
 	cout << "\n\n\n\n";
-	cout << "\t\t\tCLIENTS\n";
+	cout << setw(50) << "CLIENTS\n";
 	cout << "_________________________________________________________________________________________\n\n";
-	cout << "\tID\t|\t\t\tName\t\t\t|\tAmount Spent\n";
-	cout << "________________________________________________________________________________________\n";
+
+	cout << setw(10) << "ID" <<
+		setw(10) << "|" <<
+		setw(30) << "Name" <<
+		setw(20) << "|" <<
+		setw(15) << "Amount Spent" <<
+		setw(10) << '\n';
+
+	cout << "_________________________________________________________________________________________\n";
+
 
 	for (i = 0; i < clients.size(); i++){
-		cout <<"\t"<< clients.at(i).getId() << "\t|\t" << clients.at(i).getName() << "\t\t|\t" << clients.at(i).getAmountSpent() << "\n";
+		
+		cout << setw(10) << clients.at(i).getId() <<
+			setw(10) << "|" <<
+			setw(40) << clients.at(i).getName() <<
+			setw(10) << "|" <<
+			setw(10) << clients.at(i).getAmountSpent() <<
+			setw(10) << '\n';
 	}
 }
 
 void Supermarket::printProducts(){
 	int i;
 
-	cout << "\t\t\tPRODUCTS\n";
-	cout << "\t\t\t________\n";
-	cout << "\t\t\tName\t\t\t|\tPrice\n";
-	cout << "_________________________________________\n";
+	for (i = 0; i < 55; i++)
+		cout << endl;
+	
+	cout << setw(50) << "PRODUCTS\n";
+	cout << "_________________________________________________________________________________________\n\n";
+
+	cout << setw(30) << "Name" <<
+		setw(15) << "|" <<
+		setw(25) << "Price (euros)" << '\n';
+
+	cout << "_________________________________________________________________________________________\n";
+
 
 	for (i = 0; i < products.size(); i++){
-		cout << "\t\t\t" << products.at(i)->getName() << "\t\t\t|\t" << products.at(i)->getPrice() << "\n";
+
+		cout << setw(30) << products.at(i)->getName() <<
+			setw(15) << "|" <<
+			setw(20) << products.at(i)->getPrice() << '\n';
 	}
 }
 

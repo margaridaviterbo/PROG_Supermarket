@@ -21,11 +21,6 @@ void space();
 enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, MENU };
 Supermarket supermarket;
 
-void space(){
-	int i;
-	for (i = 0; i < 50; i++)
-		cout << endl;
-}
 
 int main(){
 
@@ -50,11 +45,18 @@ void Menu(){
 
 void endMenu(){
 	int op;
+	cout << "\n\n";
 	cout << "Choose an option:\n\n";
 	cout << "0 - Exit\n";
 	cout << "4 - Return to Menu\n";
 	cin >> op;
 	selectOption(op);
+}
+
+void space(){
+	int i;
+	for (i = 0; i < 50; i++)
+		cout << endl;
 }
 
 void selectOption(int op){
