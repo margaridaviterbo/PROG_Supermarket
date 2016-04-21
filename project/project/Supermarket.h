@@ -28,6 +28,7 @@ public:
 	void printClients();
 	void printProducts();
 	void printTransactions();
+	void searchClient();
 	Product* getProduct(string productName);
 
 };

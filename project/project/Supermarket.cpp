@@ -108,6 +108,7 @@ void Supermarket::readTransactions(){
 	infile.close();
 }
 
+
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
@@ -187,6 +188,8 @@ void Supermarket::printTransactions(){
 
 	cout << "______________________________________________________________________________________________________________________________________\n";
 
+	cout << transactions.size() << endl;
+
 	for (i = 0; i < transactions.size(); i++){
 
 		cout << setw(10) << transactions.at(i).getId() <<
@@ -196,10 +199,31 @@ void Supermarket::printTransactions(){
 			setw(20) << transactions.at(i).getDate().getDate() <<
 			setw(10) << "|" <<
 			setw(10) << transactions.at(i).getProducts().at(0)->getName();
+
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
 			cout << ", " << transactions.at(i).getProducts().at(j)->getName();
 		}
 		cout << endl;
 	}
+}
 
+void Supermarket::searchClient(){
+	int i;
+	int op;
+
+	cout << "Search client by: " << endl << "1 - ID" << endl << "2 - Complete Name" << endl << endl;
+	cin >> op;
+	cout << endl;
+
+	while (cin.fail() || (op != 1 && op != 2)) {
+		cout << "Invalid input! Please enter a number from the menu.\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> op;
+		cout << endl;
+	}
+
+
+
+	
 }

@@ -8,8 +8,7 @@ using namespace std;
 class Product {
 private:
 	string name;
-	float price;
-	
+	float price;	
 public:
 	Product(string name, float price);
 	string getName();

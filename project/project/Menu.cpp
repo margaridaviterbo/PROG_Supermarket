@@ -18,14 +18,14 @@ void Menu();
 void endMenu();
 void space();
 
-enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, MENU };
+enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, MENU };
 Supermarket supermarket;
-
 
 int main(){
 
 	cout << "WELCOME TO SUPERMARKET MANAGER!!!\n";
 	cout << "_________________________________\n\n";
+
 	Menu();
 
 	system("pause");
@@ -35,14 +35,15 @@ int main(){
 void Menu(){
 	int op;
 	cout << "0 - Exit\n";
-	cout << "1 - Cients\n";
-	cout << "2 - Products\n";
-	cout << "3 - Transactions\n\n";
+	cout << "1 - Cients List\n";
+	cout << "2 - Products List\n";
+	cout << "3 - Transactions List\n";
+	cout << "4 - Search Client\n\n";
 	cout << "Please choose an option:\n";
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || op<0 || op>3) {
+	while (cin.fail() || op<0 || op>4) {
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -57,11 +58,11 @@ void endMenu(){
 	cout << "\n\n";
 	cout << "Choose an option:\n\n";
 	cout << "0 - Exit\n";
-	cout << "4 - Return to Menu\n";
+	cout << "5 - Return to Menu\n";
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || (op!=0 && op!=4)) {	
+	while (cin.fail() || (op!=0 && op!=5)) {	
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -79,6 +80,7 @@ void space(){
 }
 
 void selectOption(int op){
+
 	switch (op) {
 	case EXIT:
 		exit(0);
@@ -98,16 +100,17 @@ void selectOption(int op){
 		supermarket.printTransactions();
 		endMenu();
 		break;
+	case SEARCH_CLIENT:
+		space();
+		supermarket.searchClient();
+		endMenu();
+		break;
 	case MENU:
 		space();
 		cout << "MENU:\n";
 		cout << "_____\n\n";
 		Menu();
 		break;
-	/*default:
-		space();
-		cerr << "Invalid option! Please choose an option from the menu.";
-		endMenu();*/
 	}
 }
 
