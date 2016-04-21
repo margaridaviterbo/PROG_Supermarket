@@ -210,6 +210,9 @@ void Supermarket::printTransactions(){
 void Supermarket::searchClient(){
 	int i;
 	int op;
+	int id;
+	string name;
+	bool found;
 
 	cout << "Search client by: " << endl << "1 - ID" << endl << "2 - Complete Name" << endl << endl;
 	cin >> op;
@@ -223,7 +226,68 @@ void Supermarket::searchClient(){
 		cout << endl;
 	}
 
+	if (op == 1){
+		cout << "Client ID: ";
+		cin >> id;
+		cout << endl;
+
+		while (cin.fail()) {
+			cout << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> id;
+			cout << endl;
+		}
+		found = false;
+		for (i = 0; i < clients.size(); i++){
+			if (id == clients.at(i).getId()){
+				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+				found = true;
+			}
+		}
+		if (found == false)
+			cout << "Client not found.";
+	}
+	else{
+		cout << "Client Complete Name: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		getline(cin, name);
+		cout << endl;
+
+		while (cin.fail()) {
+			cout << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			getline(cin, name);
+			cout << endl;
+		}
+		found = false;
+		for (i = 0; i < clients.size(); i++){
+			if (name == clients.at(i).getName()){
+				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+				found = true;
+			}
+		}
+		if (found == false)
+			cout << "Client not found.";
+	}
+}
+
+void Supermarket::searchTransaction(){		//TODO acabar esta funçao
+	int op;
+
+	cout << "Search transaction by: " << endl << "1 - Client" << endl << "2 - Day" << "3 - Between two dates: " << endl << endl;
+	cin >> op;
+	cout << endl;
+
+	while (cin.fail() || (op != 1 && op != 2 && op!=3)) {
+		cout << "Invalid input! Please enter a number from the menu.\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> op;
+		cout << endl;
+	}
 
 
-	
 }

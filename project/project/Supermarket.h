@@ -29,6 +29,7 @@ public:
 	void printProducts();
 	void printTransactions();
 	void searchClient();
+	void searchTransaction();
 	Product* getProduct(string productName);
 
 };
