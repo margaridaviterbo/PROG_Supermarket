@@ -40,6 +40,15 @@ void Menu(){
 	cout << "3 - Transactions\n\n";
 	cout << "Please choose an option:\n";
 	cin >> op;
+	cout << endl;
+
+	while (cin.fail() || op<0 || op>3) {
+		cout << "Invalid input! Please enter a number from the menu.\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> op;
+		cout << endl;
+	}
 	selectOption(op);
 }
 
@@ -50,6 +59,16 @@ void endMenu(){
 	cout << "0 - Exit\n";
 	cout << "4 - Return to Menu\n";
 	cin >> op;
+	cout << endl;
+
+	while (cin.fail() || op!=0 || op!=4) {	//TODO porque nao funciona?????????????
+		cout << "Invalid input! Please enter a number from the menu.\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> op;
+		cout << endl;
+	}
+
 	selectOption(op);
 }
 
@@ -85,10 +104,10 @@ void selectOption(int op){
 		cout << "_____\n\n";
 		Menu();
 		break;
-	default:
+	/*default:
 		space();
 		cerr << "Invalid option! Please choose an option from the menu.";
-		endMenu();
+		endMenu();*/
 	}
 }
 
