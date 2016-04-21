@@ -61,7 +61,7 @@ void endMenu(){
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || op!=0 || op!=4) {	//TODO porque nao funciona?????????????
+	while (cin.fail() || (op!=0 && op!=4)) {	
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
