@@ -112,11 +112,10 @@ Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
    	while ( i<products.size()){
-		if ((products.at(i)->getName()) != productName)
-			break;
+		if ((products.at(i)->getName()) == productName)
+			return products.at(i);
 		i++;
 	}
-	return products.at(i);
 }
 
 void Supermarket::printClients(){
@@ -196,9 +195,9 @@ void Supermarket::printTransactions(){
 			setw(15) << "|" <<
 			setw(20) << transactions.at(i).getDate().getDate() <<
 			setw(10) << "|" <<
-			setw(10) << (transactions.at(i).getProducts()).at(0)->getName();
+			setw(10) << transactions.at(i).getProducts().at(0)->getName();
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
-			cout << ", " << (transactions.at(i).getProducts()).at(j)->getName();
+			cout << ", " << transactions.at(i).getProducts().at(j)->getName();
 		}
 		cout << endl;
 	}
