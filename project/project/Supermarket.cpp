@@ -334,7 +334,7 @@ void Supermarket::searchTransaction(){
 		}
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
-			if (date_1 == transactions.at(i).getDate().getDate()){
+			if (transactions.at(i).getDate().isEqual(date_1)){
 				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
 					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
 				for (j = 1; j<transactions.at(i).getProducts().size(); j++)

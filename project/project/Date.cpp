@@ -44,7 +44,12 @@ void Date::setDayMonthYear(){
 	instr >> day >> month >> year;
 }
 
-
+bool Date::isEqual(string date){
+	if (date == this->date)
+		return true;
+	else
+		return false;
+}
 
 
 

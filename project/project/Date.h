@@ -23,6 +23,7 @@ public:
 	int getYear();
 	void setDate();
 	void setDayMonthYear();
+	bool isEqual(string date);
 };
 
 #endif
