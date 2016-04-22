@@ -14,6 +14,7 @@ using namespace std;
 
 class Supermarket{
 private:
+	int lastClientAddedId;
 	vector<Client> clients;
 	vector<Product*> products;
 	vector<Transaction> transactions;
@@ -30,6 +31,7 @@ public:
 	void printTransactions();
 	void searchClient();
 	void searchTransaction();
+	void addClient();
 	Product* getProduct(string productName);
 
 };

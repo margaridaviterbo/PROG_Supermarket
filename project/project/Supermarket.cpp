@@ -39,6 +39,7 @@ void Supermarket::readClients(){
 			getline(infile, name, ';');
 			infile >> amountSpent;
 			clients.push_back(Client(id, name, amountSpent));
+			lastClientAddedId = clients.back().getId();
 		}
 	}
 	infile.close();
@@ -276,8 +277,8 @@ void Supermarket::searchClient(){
 	}
 }
 
-void Supermarket::searchTransaction(){
-	int i, j;
+void Supermarket::searchTransaction(){	//TODO resolver erros
+/*	int i, j;
 	int op;
 	int id;
 	bool found;
@@ -395,5 +396,37 @@ void Supermarket::searchTransaction(){
 				cout << "Transaction not found." << endl;
 		}
 
+	}*/
+}
+
+
+void Supermarket::addClient(){
+	string name;
+	ofstream outfile;
+
+	lastClientAddedId = lastClientAddedId + 1;
+
+	cin.ignore(1);
+
+	cout << "Client Complete Name: ";
+	getline(cin, name);
+
+	while (cin.fail()) {
+		cerr << "Invalid Name!\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		getline(cin, name);
+		cout << endl;
 	}
+
+	cin.clear();
+
+	clients.push_back(Client(lastClientAddedId, name, 0));
+
+	outfile.open("Clients.csv");
+
+	outfile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
+
+	outfile.close();
+
 }
