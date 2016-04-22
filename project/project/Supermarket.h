@@ -34,6 +34,7 @@ public:
 	void searchTransaction();
 	void addClient();
 	void editClient();
+	void deleteClient();
 	Product* getProduct(string productName);
 
 };

@@ -229,6 +229,10 @@ void Supermarket::searchClient(){
 		cout << endl;
 	}
 
+	cin.clear();
+	cin.ignore();
+
+
 	if (op == 1){
 		cout << "Client ID: ";
 		cin >> id;
@@ -276,7 +280,10 @@ void Supermarket::searchClient(){
 		}
 		if (found == false)
 			cout << "Client not found.";
+
+
 	}
+	return;
 }
 
 void Supermarket::searchTransaction(){	//TODO resolver erros
@@ -435,18 +442,17 @@ void Supermarket::addClient(){
 }
 
 void Supermarket::editClient(){
-	string name;
-	fstream iofile;
-	string str_id, line;
+/*	string name;
+	int i;
 	
 
 	cin.ignore(1);
 
-	cout << "Please search client you want to add.\n\n";
+	cout << "Please search client you want to edit.\n\n";
 
 	searchClient();
 
-	cout << "New client name: ";
+	cout << "\n\nNew client name: ";
 
 	getline(cin, name);
 
@@ -459,29 +465,21 @@ void Supermarket::editClient(){
 	}
 
 	cin.clear();
+	cin.ignore();
 
 	clients.at(position).setName(name);
 
 	cout << "\n\nClient name changed with success.";
-	
+	*/
+}
 
-	iofile.open("Clients.csv");
+void Supermarket::deleteClient(){
 
-	
+	cout << "Please search client you want to delete.\n\n";
 
-	while (!iofile.eof()){
-		getline(iofile, line, '\n');
-		getline((fstream)line, str_id, ';');
+	searchClient();
 
-		while (str_id != to_string(clients.at(position).getId())){
-			getline((fstream)line, str_id, ';');
-		}
-		break;
-	}
-	remove(line);
-	//reescrever linha
-	
-	iofile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
+	clients.erase(clients.begin()+position);
 
-	iofile.close();
+	cout << "\n\nClient deleted with success.";
 }
