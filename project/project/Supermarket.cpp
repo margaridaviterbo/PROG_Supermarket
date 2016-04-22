@@ -436,7 +436,9 @@ void Supermarket::addClient(){
 
 void Supermarket::editClient(){
 	string name;
-	ofstream outfile;
+	fstream iofile;
+	string str_id, line;
+	
 
 	cin.ignore(1);
 
@@ -460,12 +462,26 @@ void Supermarket::editClient(){
 
 	clients.at(position).setName(name);
 
-	cout << "\n\nClient name changed with success."
+	cout << "\n\nClient name changed with success.";
 	
 
-	outfile.open("Clients.csv");
+	iofile.open("Clients.csv");
 
-	outfile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
+	
 
-	outfile.close();
+	while (!iofile.eof()){
+		getline(iofile, line, '\n');
+		getline((fstream)line, str_id, ';');
+
+		while (str_id != to_string(clients.at(position).getId())){
+			getline((fstream)line, str_id, ';');
+		}
+		break;
+	}
+	remove(line);
+	//reescrever linha
+	
+	iofile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
+
+	iofile.close();
 }
