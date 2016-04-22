@@ -24,6 +24,7 @@ public:
 	void setDate();
 	void setDayMonthYear();
 	bool isEqual(string date);
+	bool isBetween(Date date1, Date date2);
 };
 
 #endif

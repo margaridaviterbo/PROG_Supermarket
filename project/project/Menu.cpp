@@ -108,7 +108,7 @@ void selectOption(int op){
 		break;
 	case SEARCH_TRANSACTION:
 		space();
-		supermarket.searchTransaction();
+//		supermarket.searchTransaction();
 		endMenu();
 		break;
 	case MENU:

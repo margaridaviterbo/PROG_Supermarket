@@ -95,14 +95,18 @@ void Supermarket::readTransactions(){
 			
 			i = 0;
 			while (i < strProducts.size()){
-				if (strProducts.at(i) != ',')
+				if (strProducts.at(i) != ','){
 					productName = productName + strProducts.at(i);
+				}
 				else{
 					transactions.back().addProduct(getProduct(productName));
 					productName = "";
 				}
 				i++;
 			}
+			strProducts.clear();
+			productName.clear();
+		
 		}
 	}
 	infile.close();
@@ -174,8 +178,8 @@ void Supermarket::printTransactions(){
 	int i,j;
 	string print;
 
-	cout << setw(65) << "TRANSACTIONS\n";
-	cout << "______________________________________________________________________________________________________________________________________\n\n";
+	cout << setw(85) << "TRANSACTIONS\n";
+	cout << "____________________________________________________________________________________________________________________________________________________________________\n\n";
 
 	cout << setw(10) << "ID" <<
 		setw(10) << "|" <<
@@ -183,12 +187,10 @@ void Supermarket::printTransactions(){
 		setw(10) << "|" <<
 		setw(15) << "Date" <<
 		setw(15) << "|" <<
-		setw(30) << "Products" <<
+		setw(50) << "Products" <<
 		setw(40) << '\n';
 
-	cout << "______________________________________________________________________________________________________________________________________\n";
-
-	cout << transactions.size() << endl;
+	cout << "____________________________________________________________________________________________________________________________________________________________________\n";
 
 	for (i = 0; i < transactions.size(); i++){
 
@@ -198,7 +200,7 @@ void Supermarket::printTransactions(){
 			setw(15) << "|" <<
 			setw(20) << transactions.at(i).getDate().getDate() <<
 			setw(10) << "|" <<
-			setw(10) << transactions.at(i).getProducts().at(0)->getName();
+			setw(15) << transactions.at(i).getProducts().at(0)->getName();
 
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
 			cout << ", " << transactions.at(i).getProducts().at(j)->getName();
@@ -274,7 +276,7 @@ void Supermarket::searchClient(){
 	}
 }
 
-void Supermarket::searchTransaction(){		
+/*void Supermarket::searchTransaction(){		
 	int i,j;
 	int op;
 	int id;
@@ -385,4 +387,4 @@ void Supermarket::searchTransaction(){
 			cout << "Transaction not found." << endl;
 	}
 
-}
+}*/
