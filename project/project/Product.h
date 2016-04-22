@@ -13,6 +13,7 @@ public:
 	Product(string name, float price);
 	string getName();
 	float getPrice();
+	bool isEqual(string name);
 	
 };
 

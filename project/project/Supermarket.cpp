@@ -113,7 +113,7 @@ Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
    	while ( i<products.size()){
-		if ((products.at(i)->getName()) == productName)
+		if (products.at(i)->isEqual(productName))
 			return products.at(i);
 		i++;
 	}
@@ -219,7 +219,7 @@ void Supermarket::searchClient(){
 	cout << endl;
 
 	while (cin.fail() || (op != 1 && op != 2)) {
-		cout << "Invalid input! Please enter a number from the menu.\n";
+		cerr << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
 		cin >> op;
@@ -232,7 +232,7 @@ void Supermarket::searchClient(){
 		cout << endl;
 
 		while (cin.fail()) {
-			cout << "Invalid input!\n";
+			cerr << "Invalid input!\n";
 			cin.clear();
 			cin.ignore(256, '\n');
 			cin >> id;
@@ -240,7 +240,7 @@ void Supermarket::searchClient(){
 		}
 		found = false;
 		for (i = 0; i < clients.size(); i++){
-			if (id == clients.at(i).getId()){
+			if (clients.at(i).isEqual(id)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 				found = true;
 			}
@@ -249,14 +249,14 @@ void Supermarket::searchClient(){
 			cout << "Client not found.";
 	}
 	else{
-		cout << "Client Complete Name: ";
+		cerr << "Client Complete Name: ";
 		cin.clear();
 		cin.ignore(256, '\n');
 		getline(cin, name);
 		cout << endl;
 
 		while (cin.fail()) {
-			cout << "Invalid input!\n";
+			cerr << "Invalid input!\n";
 			cin.clear();
 			cin.ignore(256, '\n');
 			getline(cin, name);
@@ -264,7 +264,7 @@ void Supermarket::searchClient(){
 		}
 		found = false;
 		for (i = 0; i < clients.size(); i++){
-			if (name == clients.at(i).getName()){
+			if (clients.at(i).isEqual(name)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 				found = true;
 			}
@@ -274,20 +274,115 @@ void Supermarket::searchClient(){
 	}
 }
 
-void Supermarket::searchTransaction(){		//TODO acabar esta funçao
+void Supermarket::searchTransaction(){		
+	int i,j;
 	int op;
+	int id;
+	bool found;
+	string date_1, date_2;
 
 	cout << "Search transaction by: " << endl << "1 - Client" << endl << "2 - Day" << "3 - Between two dates: " << endl << endl;
 	cin >> op;
 	cout << endl;
+	
 
 	while (cin.fail() || (op != 1 && op != 2 && op!=3)) {
-		cout << "Invalid input! Please enter a number from the menu.\n";
+		cerr << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
 		cin >> op;
 		cout << endl;
 	}
 
+
+	if (op == 1){
+		cout << "Client ID: ";
+		cin >> id;
+		cout << endl;
+
+		while (cin.fail()) {
+			cerr << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> id;
+			cout << endl;
+		}
+		found = false;
+		for (i = 0; i < transactions.size(); i++){
+			if (transactions.at(i).isEqual(id)){
+				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
+					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
+				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
+					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
+				found = true;
+			}
+		}
+		if (found == false)
+			cout << "Transaction not found." << endl;
+	}
+	else if (op==2){
+		cout << "Search transactions in date (dd/mm/yyyy): ";
+		cin >> date_1;
+		cout << endl;
+
+		while (cin.fail()) {
+			cerr << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> date_1;
+			cout << endl;
+		}
+		found = false;
+		for (i = 0; i < transactions.size(); i++){
+			if (date_1 == transactions.at(i).getDate().getDate()){
+				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
+					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
+				for (j = 1; j<transactions.at(i).getProducts().size(); j++)
+					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
+				found = true;
+			}
+		}
+		if (found == false)
+			cout << "Transaction not found." << endl;
+	}
+	else{
+		cout << "Search transactions between date 1 and date 2 (dd/mm/yyyy dd/mm/yyyy): ";
+		cin >> date_1;
+		cout << endl;
+
+		while (cin.fail()) {
+			cerr << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> date_1;
+			cout << endl;
+		}
+
+		cin >> date_2;
+		cout << endl;
+
+		while (cin.fail()) {
+			cerr << "Invalid input!\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> date_2;
+			cout << endl;
+		}
+
+		// VOU AQUI
+
+		found = false;
+		for (i = 0; i < transactions.size(); i++){
+			if (date == transactions.at(i).getDate().getDate()){
+				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
+					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
+				for (j = 1; j<transactions.at(i).getProducts().size(); j++)
+					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
+				found = true;
+			}
+		}
+		if (found == false)
+			cout << "Transaction not found." << endl;
+	}
 
 }

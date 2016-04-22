@@ -19,4 +19,11 @@ float Product::getPrice(){
 	return price;
 }
 
+bool Product::isEqual(string name){
+	if (name == this->name)
+		return true;
+	else
+		return false;
+}
+
 

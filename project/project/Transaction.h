@@ -21,6 +21,7 @@ public:
 	Date getDate();
 	vector<Product*> getProducts();
 	void addProduct(Product* product);
+	bool isEqual(int clientId);
 };
 
 

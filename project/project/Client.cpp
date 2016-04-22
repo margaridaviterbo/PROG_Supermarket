@@ -19,3 +19,17 @@ string Client::getName(){
 double Client::getAmountSpent(){
 	return amountSpent;
 }
+
+bool Client::isEqual(int id){
+	if (id == this->id)
+		return true;
+	else
+		return false;
+}
+
+bool Client::isEqual(string name){
+	if (name == this->name)
+		return true;
+	else
+		return false;
+}

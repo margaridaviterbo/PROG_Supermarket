@@ -30,3 +30,10 @@ void Transaction::addProduct(Product* product){
 	products.push_back(product);
 }
 
+bool Transaction::isEqual(int clientId){
+	if (clientId == this->clientId)
+		return true;
+	else
+		return false;
+}
+

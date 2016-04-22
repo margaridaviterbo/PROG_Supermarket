@@ -16,7 +16,8 @@ public:
 	int getId();
 	string getName();
 	double getAmountSpent();
-
+	bool isEqual(int id);
+	bool isEqual(string name);
 };
 
 
