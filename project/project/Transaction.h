@@ -16,6 +16,7 @@ private:
 	vector<Product*> products;
 public:
 	Transaction(int id, int clientId, Date date);	//os parametros são passados por referencia quando quero alterar o valor ou forem muito grandes para andar a fazer copia e nesse caso uso const &parametro
+	Transaction(int id, int clientId, Date date, vector<Product> productsT);
 	int getId();
 	int getClientId();
 	Date getDate();

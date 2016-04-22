@@ -5,6 +5,8 @@
 #include<vector>
 #include<fstream>
 #include<iomanip>
+#include <stdio.h>
+#include <time.h>
 #include"Client.h"
 #include"Product.h"
 #include"Transaction.h"
@@ -35,7 +37,9 @@ public:
 	void addClient();
 	void editClient();
 	void deleteClient();
+	void createTransaction();
 	Product* getProduct(string productName);
+	const string currentDateTime();
 
 };
 

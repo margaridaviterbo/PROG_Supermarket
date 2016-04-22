@@ -483,3 +483,73 @@ void Supermarket::deleteClient(){
 
 	cout << "\n\nClient deleted with success.";
 }
+
+void Supermarket::createTransaction(){
+	/*int i;
+	int clientID;
+	int id;
+	int nProducts;
+	Date date;
+	string str_products;
+	string productName;
+	vector<Product> productsTransaction;
+
+	cout << "Client ID: ";
+	cin >> clientID;
+
+	while (cin.fail()) {
+		cerr << "\n\nInvalid ID!\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> clientID;
+		cout << endl;
+	}
+
+	cin.clear();
+	cin.ignore();
+
+	cout << "Insert number of productsof the transaction (separated by comma): ";
+	cin >> str_products;
+
+	while (cin.fail()) {
+		cerr << "\n\nInvalid ID!\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> str_products;
+		cout << endl;
+	}
+
+	cin.clear();
+	cin.ignore();
+
+
+	for (i = 0; i < nProducts; i++){
+		if (str_products.at(i) != ','){
+			productName = productName + str_products.at(i);
+		}
+		else{
+			products.push_back(getProduct(productName));
+			productName = "";
+		}
+	}
+	str_products.clear();
+	productName.clear();
+
+	date = currentDateTime();		// Get current date/time, format is YYYY-MM-DD.HH:mm:ss!!!!!!!!!!
+
+	id = transactions.back().getId() + 1;
+
+	transactions.push_back(Transaction(id, clientID, date, productsTransaction));
+
+}
+
+const string Supermarket::currentDateTime() {
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+
+	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+
+	return buf;*/
+}

@@ -10,6 +10,17 @@ Transaction::Transaction(int id, int clientId, Date date) {
 	this->date = date;
 }
 
+Transaction::Transaction(int id, int clientId, Date date, vector<Product> productsT){
+	int i;
+	this->id = id;
+	this->clientId = clientId;
+	this->date = date;
+	for (i = 0; i < productsT.size(); i++){
+		products.push_back(products.at(i));
+	}
+	
+}
+
 int Transaction::getId(){
 	return id;
 }
