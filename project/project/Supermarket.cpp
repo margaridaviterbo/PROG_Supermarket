@@ -20,7 +20,7 @@ vector<Transaction> Supermarket::getTransactions(){
 	return transactions;
 }
 
-void Supermarket:: readClients(){
+void Supermarket::readClients(){
 	int id;
 	string name;
 	float amountSpent;
@@ -58,7 +58,7 @@ void Supermarket::readProducts(){
 	else{
 		while (!infile.eof()){
 			getline(infile, name, ';');
-			infile>> price;
+			infile >> price;
 			getline(infile, trash, '\n');
 			products.push_back(new Product(name, price));
 		}
@@ -70,10 +70,10 @@ void Supermarket::readTransactions(){
 	int i, pos_i, pos_f;
 	int id;
 	int clientId;
-	string d;	
+	string d;
 	Date date;
 	string strProducts;
-	string productName="";
+	string productName = "";
 	string trash;
 	ifstream infile;
 
@@ -92,7 +92,7 @@ void Supermarket::readTransactions(){
 			date = Date(d);
 			transactions.push_back(Transaction(id, clientId, date));
 			getline(infile, strProducts);
-			
+
 			i = 0;
 			while (i < strProducts.size()){
 				if (strProducts.at(i) != ','){
@@ -106,7 +106,7 @@ void Supermarket::readTransactions(){
 			}
 			strProducts.clear();
 			productName.clear();
-		
+
 		}
 	}
 	infile.close();
@@ -116,7 +116,7 @@ void Supermarket::readTransactions(){
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
-   	while ( i<products.size()){
+	while (i < products.size()){
 		if (products.at(i)->isEqual(productName))
 			return products.at(i);
 		i++;
@@ -125,7 +125,7 @@ Product* Supermarket::getProduct(string productName){
 
 void Supermarket::printClients(){
 	int i;
-	
+
 	cout << setw(50) << "CLIENTS\n";
 	cout << "_________________________________________________________________________________________\n\n";
 
@@ -140,7 +140,7 @@ void Supermarket::printClients(){
 
 
 	for (i = 0; i < clients.size(); i++){
-		
+
 		cout << setw(10) << clients.at(i).getId() <<
 			setw(10) << "|" <<
 			setw(40) << clients.at(i).getName() <<
@@ -155,7 +155,7 @@ void Supermarket::printProducts(){
 
 	for (i = 0; i < 55; i++)
 		cout << endl;
-	
+
 	cout << setw(50) << "PRODUCTS\n";
 	cout << "_________________________________________________________________________________________\n\n";
 
@@ -175,7 +175,7 @@ void Supermarket::printProducts(){
 }
 
 void Supermarket::printTransactions(){
-	int i,j;
+	int i, j;
 	string print;
 
 	cout << setw(85) << "TRANSACTIONS\n";
@@ -183,7 +183,7 @@ void Supermarket::printTransactions(){
 
 	cout << setw(10) << "ID" <<
 		setw(10) << "|" <<
-		setw(20) << "Client ID" << 
+		setw(20) << "Client ID" <<
 		setw(10) << "|" <<
 		setw(15) << "Date" <<
 		setw(15) << "|" <<
@@ -276,19 +276,21 @@ void Supermarket::searchClient(){
 	}
 }
 
-/*void Supermarket::searchTransaction(){		
-	int i,j;
+void Supermarket::searchTransaction(){
+	int i, j;
 	int op;
 	int id;
 	bool found;
 	string date_1, date_2;
+	Date date1;
+	Date date2;
 
 	cout << "Search transaction by: " << endl << "1 - Client" << endl << "2 - Day" << "3 - Between two dates: " << endl << endl;
 	cin >> op;
 	cout << endl;
-	
 
-	while (cin.fail() || (op != 1 && op != 2 && op!=3)) {
+
+	while (cin.fail() || (op != 1 && op != 2 && op != 3)) {
 		cerr << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -312,8 +314,10 @@ void Supermarket::searchClient(){
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).isEqual(id)){
-				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
+				cout << "Transaction ID: " << transactions.at(i).getId()
+					<< "\tClient ID: " << transactions.at(i).getClientId()
+					<< "\tDate: " << transactions.at(i).getDate().getDate()
+					<< "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
 				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
 					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
 				found = true;
@@ -322,7 +326,7 @@ void Supermarket::searchClient(){
 		if (found == false)
 			cout << "Transaction not found." << endl;
 	}
-	else if (op==2){
+	else if (op == 2){
 		cout << "Search transactions in date (dd/mm/yyyy): ";
 		cin >> date_1;
 		cout << endl;
@@ -337,9 +341,11 @@ void Supermarket::searchClient(){
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate().isEqual(date_1)){
-				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
-				for (j = 1; j<transactions.at(i).getProducts().size(); j++)
+				cout << "Transaction ID: " << transactions.at(i).getId()
+					<< "\tClient ID: " << transactions.at(i).getClientId()
+					<< "\tDate: " << transactions.at(i).getDate().getDate()
+					<< "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
+				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
 					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
 				found = true;
 			}
@@ -360,6 +366,8 @@ void Supermarket::searchClient(){
 			cout << endl;
 		}
 
+		date1 = Date(date_1);
+
 		cin >> date_2;
 		cout << endl;
 
@@ -371,20 +379,21 @@ void Supermarket::searchClient(){
 			cout << endl;
 		}
 
-		// VOU AQUI
+		date2 = Date(date_2);
 
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
-			if (date == transactions.at(i).getDate().getDate()){
+			if (transactions.at(i).getDate().isBetween(date1, date2)){
 				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
 					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts.at(0)->getName();
-				for (j = 1; j<transactions.at(i).getProducts().size(); j++)
+				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
 					cout << ", " << transactions.at(i).getProducts.at(j)->getName() << endl << endl;
 				found = true;
 			}
-		}
-		if (found == false)
-			cout << "Transaction not found." << endl;
-	}
 
-}*/
+			if (found == false)
+				cout << "Transaction not found." << endl;
+		}
+
+	}
+}
