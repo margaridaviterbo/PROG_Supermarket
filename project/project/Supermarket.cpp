@@ -245,6 +245,7 @@ void Supermarket::searchClient(){
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(id)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+				position = i;
 				found = true;
 			}
 		}
@@ -269,6 +270,7 @@ void Supermarket::searchClient(){
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(name)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+				position = i;
 				found = true;
 			}
 		}
@@ -422,6 +424,7 @@ void Supermarket::addClient(){
 	cin.clear();
 
 	clients.push_back(Client(lastClientAddedId, name, 0));
+	cout << "Client added with success.\n\n";
 
 	outfile.open("Clients.csv");
 
@@ -429,4 +432,40 @@ void Supermarket::addClient(){
 
 	outfile.close();
 
+}
+
+void Supermarket::editClient(){
+	string name;
+	ofstream outfile;
+
+	cin.ignore(1);
+
+	cout << "Please search client you want to add.\n\n";
+
+	searchClient();
+
+	cout << "New client name: ";
+
+	getline(cin, name);
+
+	while (cin.fail()) {
+		cerr << "Invalid Name!\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		getline(cin, name);
+		cout << endl;
+	}
+
+	cin.clear();
+
+	clients.at(position).setName(name);
+
+	cout << "\n\nClient name changed with success."
+	
+
+	outfile.open("Clients.csv");
+
+	outfile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
+
+	outfile.close();
 }

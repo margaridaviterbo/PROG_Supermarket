@@ -16,6 +16,10 @@ string Client::getName(){
 	return name;
 }
 
+void Client::setName(string name){
+	this->name = name;
+}
+
 double Client::getAmountSpent(){
 	return amountSpent;
 }
@@ -33,3 +37,5 @@ bool Client::isEqual(string name){
 	else
 		return false;
 }
+
+

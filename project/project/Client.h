@@ -15,6 +15,7 @@ public:
 	Client(int id, string name, double amountSpent);
 	int getId();
 	string getName();
+	void setName(string name);
 	double getAmountSpent();
 	bool isEqual(int id);
 	bool isEqual(string name);
