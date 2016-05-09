@@ -286,7 +286,7 @@ void Supermarket::searchClient(){
 	return;
 }
 
-void Supermarket::searchTransaction(){	//TODO resolver erros
+void Supermarket::searchTransaction(){	//TODO ainda nao funciona opcao 3
 	int i, j;
 	int op;
 	int id;
