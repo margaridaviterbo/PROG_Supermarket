@@ -57,38 +57,42 @@ bool Date::isBetween(Date date1, Date date2){
 
 	if (date1.year < date2.year)
 		date1Minordate2 = true;
-	else if ((date1.year = date2.year) && (date1.month < date2.month))
+	else if ((date1.year == date2.year) && (date1.month < date2.month))
 		date1Minordate2 = true;
-	else if ((date1.year = date2.year) && (date1.month = date2.month) && (date1.day < date2.day))
+	else if ((date1.year == date2.year) && (date1.month == date2.month) && (date1.day < date2.day))
 		date1Minordate2 = true;
 	else
 		date1Minordate2 = false;
 
 	if (date1.year < this->year)
 		date1MinorOrEqualThisDate = true;
-	else if ((date1.year = this->year)){
+	else if ((date1.year == this->year)){
 		if (date1.month < this->month)
 			date1MinorOrEqualThisDate = true;
-		else if ((date1.month = this->month) && (date1.day <= this->day))
+		else if ((date1.month == this->month) && (date1.day <= this->day))
 			date1MinorOrEqualThisDate = true;
+		else
+			date1MinorOrEqualThisDate = false;
 	}
 	else
 		date1MinorOrEqualThisDate = false;
 
 	if (date2.year > this->year)
 		date2MajorOrEqualThisDate = true;
-	else if ((date2.year = this->year)){
+	else if ((date2.year == this->year)){
 		if (date2.month > this->month)
 			date2MajorOrEqualThisDate = true;
-		else if ((date1.month = this->month) && (date1.day >= this->day))
+		else if ((date1.month == this->month) && (date1.day >= this->day))
 			date2MajorOrEqualThisDate = true;
+		else
+			date2MajorOrEqualThisDate = false;
 	}
 	else
 		date2MajorOrEqualThisDate = false;
 
 	if (date1Minordate2 == true && date1MinorOrEqualThisDate == true && date2MajorOrEqualThisDate == true)
 		return true;
-	else if (date1Minordate2 == false && date1MinorOrEqualThisDate == false && date2MajorOrEqualThisDate == false)
+	else if (date1Minordate2 == false || date1MinorOrEqualThisDate == false || date2MajorOrEqualThisDate == false)
 		return true;
 	else return false;
 
