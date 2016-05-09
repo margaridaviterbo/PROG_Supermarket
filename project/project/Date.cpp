@@ -50,7 +50,7 @@ bool Date::isEqual(string date){
 		return false;
 }
 
-bool Date::isBetween(Date date1, Date date2){	//TODO nao está completament bem
+bool Date::isBetween(Date date1, Date date2){	
 	bool date1Minordate2;
 	bool date1MinorOrEqualThisDate;
 	bool date2MajorOrEqualThisDate;

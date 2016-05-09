@@ -9,15 +9,14 @@
 
 
 using namespace std;
-
-//TODO AO SUBMETER O PROJETO E O READ ME SUBMETER OS MEUS TRES FICHEIROS 
+ 
 
 void selectOption(int op);
 void Menu();
 void endMenu();
 void space();
 
-enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, SEARCH_TRANSACTION, ADD_CLIENT, EDIT_CLIENT, DELETE_CLIENT, CREATE_TRANSACTION, RECOMENDATION_SYSTEM, MENU };
+enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, SEARCH_TRANSACTION, ADD_CLIENT, EDIT_CLIENT, DELETE_CLIENT, CREATE_TRANSACTION, RECOMENDATION_SYSTEM, SAVE, MENU };
 Supermarket supermarket;
 
 int main(){
@@ -43,12 +42,13 @@ void Menu(){
 	cout << "7 - Edit Client\n";
 	cout << "8 - Delete Client\n";
 	cout << "9 - Create transaction\n";
-	cout << "10- Recomendation System\n\n";
+	cout << "10- Recomendation System\n";
+	cout << "11- Save\n\n";
 	cout << "Please choose an option:\n";
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || op<0 || op>10) {
+	while (cin.fail() || op<0 || op>11) {
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -63,11 +63,11 @@ void endMenu(){
 	cout << "\n\n";
 	cout << "Choose an option:\n\n";
 	cout << "0 - Exit\n";
-	cout << "11 - Return to Menu\n";
+	cout << "12 - Return to Menu\n";
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || (op!=0 && op!=11)) {	
+	while (cin.fail() || (op!=0 && op!=12)) {	
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -137,7 +137,12 @@ void selectOption(int op){
 		break;
 	case RECOMENDATION_SYSTEM:
 		space();
-		supermarket.runRecomendationSystem();
+//		supermarket.runRecomendationSystem();
+		endMenu();
+		break;
+	case SAVE:
+		space();
+		supermarket.save();
 		endMenu();
 		break;
 	case MENU:

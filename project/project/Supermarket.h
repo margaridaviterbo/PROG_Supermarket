@@ -38,6 +38,7 @@ public:
 	void editClient();
 	void deleteClient();
 	void createTransaction();
+	void save();
 	Product* getProduct(string productName);
 	const string currentDateTime();
 

@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Client::Client(){
+
+}
+
 Client::Client(int id, string name, double amountSpent){
 	this->id = id;
 	this->name = name;

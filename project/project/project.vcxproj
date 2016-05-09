@@ -68,7 +68,6 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="RecomendationSystem.cpp" />
     <ClCompile Include="Supermarket.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
@@ -76,7 +75,6 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Product.h" />
-    <ClInclude Include="RecomendationSystem.h" />
     <ClInclude Include="Supermarket.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
