@@ -23,8 +23,8 @@ public:
 	int getYear();
 	void setDate();
 	void setDayMonthYear();
-	bool isEqual(string date);
-	bool isBetween(Date date1, Date date2);
+	bool operator==(string date);
+	bool operator<=(Date date);
 };
 
 #endif

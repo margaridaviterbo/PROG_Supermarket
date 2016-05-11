@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//TODO corrigir funçoes que faltam
+//TODO mudar vetor clientes para produtos
+
 Supermarket::Supermarket(){
 	readClients();
 	readProducts();
@@ -286,7 +289,7 @@ void Supermarket::searchClient(){
 	return;
 }
 
-void Supermarket::searchTransaction(){	//TODO ainda nao funciona opcao 3
+void Supermarket::searchTransaction(){	//TODO corrigir isto
 	int i, j;
 	int op;
 	int id;
@@ -350,7 +353,7 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona opcao 3
 		}
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
-			if (transactions.at(i).getDate().isEqual(date_1)){
+			if (transactions.at(i).getDate()==date_1){
 				cout << "Transaction ID: " << transactions.at(i).getId()
 					<< "\tClient ID: " << transactions.at(i).getClientId()
 					<< "\tDate: " << transactions.at(i).getDate().getDate()
@@ -391,14 +394,22 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona opcao 3
 
 		date2 = Date(date_2);
 
+		while (!(date1 <= date2)){
+			cerr << "First date is more recent than the second one, please fix the error.";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >>
+		}
+
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate().isBetween(date1, date2)){
 				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate() << "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
+					<< "\tDate: " << transactions.at(i).getDate().getDate() << setw(20) << "Products: " << transactions.at(i).getProducts().at(0)->getName();
 				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName() << endl << endl;
+					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
 				found = true;
+				cout << endl;
 			}
 
 			if (found == false)
@@ -585,4 +596,10 @@ void Supermarket::save(){
 		outfile << endl;
 		}
 		outfile.close();*/
+}
+
+void Supermarket::invalidInput(string& input){
+
+	//TODO acabar esta funçao
+
 }
