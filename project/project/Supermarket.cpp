@@ -241,13 +241,8 @@ void Supermarket::searchClient(){
 		cin >> id;
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> id;
-			cout << endl;
-		}
+		invalidInput(id, "Invalid id!\n");
+
 		found = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(id)){
@@ -266,13 +261,8 @@ void Supermarket::searchClient(){
 		getline(cin, name);
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			getline(cin, name);
-			cout << endl;
-		}
+		invalidInput(name);
+
 		found = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(name)){
@@ -289,7 +279,7 @@ void Supermarket::searchClient(){
 	return;
 }
 
-void Supermarket::searchTransaction(){	//TODO corrigir isto
+void Supermarket::searchTransaction(){	//TODO corrigir esta funçao tendo em conta os novos operators oberloads na classe data
 	int i, j;
 	int op;
 	int id;
@@ -317,13 +307,8 @@ void Supermarket::searchTransaction(){	//TODO corrigir isto
 		cin >> id;
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> id;
-			cout << endl;
-		}
+		invalidInput(id, "Invalid id!\n");
+
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).isEqual(id)){
@@ -344,13 +329,8 @@ void Supermarket::searchTransaction(){	//TODO corrigir isto
 		cin >> date_1;
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> date_1;
-			cout << endl;
-		}
+		invalidInput(date_1, "Invalid date\n");
+
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate()==date_1){
@@ -371,26 +351,14 @@ void Supermarket::searchTransaction(){	//TODO corrigir isto
 		cin >> date_1;
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> date_1;
-			cout << endl;
-		}
+		invalidInput(date_1, "Invalid date\n");
 
 		date1 = Date(date_1);
 
 		cin >> date_2;
 		cout << endl;
 
-		while (cin.fail()) {
-			cerr << "Invalid input!\n";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> date_2;
-			cout << endl;
-		}
+		invalidInput(date_2, "Invalid date\n");
 
 		date2 = Date(date_2);
 
@@ -431,13 +399,7 @@ void Supermarket::addClient(){
 	cout << "Client Complete Name: ";
 	getline(cin, name);
 
-	while (cin.fail()) {
-		cerr << "Invalid Name!\n";
-		cin.clear();
-		cin.ignore(256, '\n');
-		getline(cin, name);
-		cout << endl;
-	}
+	invalidInput(name);
 
 	cin.clear();
 
@@ -467,13 +429,7 @@ void Supermarket::editClient(){
 
 		getline(cin, name);
 
-		while (cin.fail()) {
-		cerr << "Invalid Name!\n";
-		cin.clear();
-		cin.ignore(256, '\n');
-		getline(cin, name);
-		cout << endl;
-		}
+		invalidInput(name);
 
 		cin.clear();
 		cin.ignore();
@@ -508,13 +464,7 @@ void Supermarket::createTransaction(){
 	cout << "Client ID: ";
 	cin >> clientID;
 
-	while (cin.fail()) {
-	cerr << "\n\nInvalid ID!\n";
-	cin.clear();
-	cin.ignore(256, '\n');
-	cin >> clientID;
-	cout << endl;
-	}
+	invalidInput(clientID, "Invalid ID!\n");
 
 	cin.clear();
 	cin.ignore();
@@ -522,13 +472,7 @@ void Supermarket::createTransaction(){
 	cout << "Insert number of productsof the transaction (separated by comma): ";
 	cin >> str_products;
 
-	while (cin.fail()) {
-	cerr << "\n\nInvalid ID!\n";
-	cin.clear();
-	cin.ignore(256, '\n');
-	cin >> str_products;
-	cout << endl;
-	}
+	invalidInput(str_products, "Invalid input!\n");
 
 	cin.clear();
 	cin.ignore();
@@ -598,8 +542,38 @@ void Supermarket::save(){
 		outfile.close();*/
 }
 
-void Supermarket::invalidInput(string& input){
+void Supermarket::invalidInput(int& input, string msg){
 
-	//TODO acabar esta funçao
+	while (cin.fail()) {
+		cerr << msg;
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> input;
+		cout << endl;
+	}
+
+}
+
+void Supermarket::invalidInput(string& input, string msg){
+
+	while (cin.fail()) {
+		cerr << msg;
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> input;
+		cout << endl;
+	}
+}
+
+void Supermarket::invalidInput(string& input){
+	
+	while (cin.fail()) {
+		cerr << "Invalid Name!\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		getline(cin, input);
+		cout << endl;
+
+	}
 
 }

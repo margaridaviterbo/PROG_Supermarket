@@ -41,6 +41,8 @@ public:
 	void save();
 	Product* getProduct(string productName);
 	const string currentDateTime();
+	void invalidInput(int& input, string msg);
+	void invalidInput(string& input, string msg);
 	void invalidInput(string& input);
 
 };
