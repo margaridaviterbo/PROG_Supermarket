@@ -217,7 +217,6 @@ void Supermarket::searchClient(){
 	int op;
 	int id;
 	string name;
-	bool found;
 
 	cout << "Search client by: " << endl << "1 - ID" << endl << "2 - Complete Name" << endl << endl;
 	cin >> op;
@@ -242,43 +241,44 @@ void Supermarket::searchClient(){
 
 		invalidInput(id, "Invalid id!\n");
 
-		found = false;
+		clientFound = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(id)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 				position = i;
-				found = true;
+				clientFound = true;
 			}
 		}
-		if (found == false)
+		if (clientFound == false)
 			cout << "Client not found.";
 	}
 	else{
-		cerr << "Client Complete Name: ";
+		cout << "Client Complete Name: ";
 		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.ignore(256, '\n');
 		getline(cin, name);
 		cout << endl;
 
 		invalidInput(name);
 
-		found = false;
+		cout << "jyf\n";
+
+		clientFound = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(name)){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 				position = i;
-				found = true;
+				clientFound = true;
 			}
 		}
-		if (found == false)
+		if (clientFound == false)
 			cout << "Client not found.";
-
 
 	}
 	return;
 }
 
-void Supermarket::searchTransaction(){	//TODO corrigir esta funçao tendo em conta os novos operators oberloads na classe data
+void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe data tem um erro
 	int i, j;
 	int op;
 	int id;
@@ -436,15 +436,18 @@ void Supermarket::editClient(){
 		cin.clear();
 		cin.ignore();
 
-		cout << "\n\nNew client name: ";
+		if (clientFound == true){
 
-		getline(cin, name);
+			cout << "\n\nNew client name: ";
 
-		invalidInput(name);
+			getline(cin, name);
 
-		clients.at(position).setName(name);
+			invalidInput(name);
 
-		cout << "\n\nClient name changed with success.";
+			clients.at(position).setName(name);
+
+			cout << "\n\nClient name changed with success.";
+		}
 		
 }
 
@@ -454,68 +457,88 @@ void Supermarket::deleteClient(){
 
 	searchClient();
 
-	clients.erase(clients.begin() + position);
+	if (clientFound == true){
 
-	cout << "\n\nClient deleted with success.";
+		clients.erase(clients.begin() + position);
+
+		cout << "\n\nClient deleted with success.";
+	}
 }
 
 void Supermarket::createTransaction(){
-	/*int i;
-	int clientID;
-	int id;
-	int nProducts;
-	Date date;
-	string str_products;
-	string productName;
-	vector<Product> productsTransaction;
-
-	cout << "Client ID: ";
-	cin >> clientID;
-
-	invalidInput(clientID, "Invalid ID!\n");
-
-	cin.clear();
-	cin.ignore();
-
-	cout << "Insert number of productsof the transaction (separated by comma): ";
-	cin >> str_products;
-
-	invalidInput(str_products, "Invalid input!\n");
-
-	cin.clear();
-	cin.ignore();
-
-
-	for (i = 0; i < nProducts; i++){
-	if (str_products.at(i) != ','){
-	productName = productName + str_products.at(i);
+//	int i, op;
+//	int clientID;
+//	int id;
+//	int nProducts;
+//	Date date;
+//	string date_str;
+//	string str_products;
+//	string productName;
+//	vector<Product> productsTransaction;
+//	
+//	cout << "1 - Shop with an existig client\n";
+//	cout << "2 - Shop with a new client\n\n";
+//	cout << "Choose an option: ";
+//	cin >> op;
+//	cout << endl;
+//
+//	while (cin.fail() || (op != 1 && op != 2)) {
+//		cerr << "Invalid input! Please enter a number from the menu.\n";
+//		cin.clear();
+//		cin.ignore(256, '\n');
+//		cin >> op;
+//		cout << endl;
+//	}
+//
+//	if (op == 1){
+//		searchClient();
+//	}
+//
+//
+//
+//
+//	cout << "Client ID: ";
+//	cin >> clientID;
+//
+//	invalidInput(clientID, "Invalid ID!\n");
+//
+//	cin.clear();
+//	cin.ignore();
+//
+//	cout << "Insert number of productsof the transaction (separated by comma): ";
+//	cin >> str_products;
+//
+//	invalidInput(str_products, "Invalid input!\n");
+//
+//	cin.clear();
+//	cin.ignore();
+//
+//
+//	for (i = 0; i < nProducts; i++){
+//	if (str_products.at(i) != ','){
+//	productName = productName + str_products.at(i);
+//	}
+//	else{
+//	products.push_back(getProduct(productName));
+//	productName = "";
+//	}
+//	}
+//	str_products.clear();
+//	productName.clear();
+//
+//	cout << "Date (dd/mm/yyyy): ";
+//	cin >> date_str;
+//	cout << endl;
+//
+//	invalidInput(date_str, "Invalid date\n");
+//
+//	date = Date(date_str);	
+//
+//	id = transactions.back().getId() + 1;
+//
+//	transactions.push_back(Transaction(id, clientID, date, productsTransaction));
+//
 	}
-	else{
-	products.push_back(getProduct(productName));
-	productName = "";
-	}
-	}
-	str_products.clear();
-	productName.clear();
-
-	date = currentDateTime();		// Get current date/time, format is YYYY-MM-DD.HH:mm:ss!!!!!!!!!!
-
-	id = transactions.back().getId() + 1;
-
-	transactions.push_back(Transaction(id, clientID, date, productsTransaction));
-
-	}
-
-	const string Supermarket::currentDateTime() {
-	time_t     now = time(0);
-	struct tm  tstruct;
-	char       buf[80];
-	tstruct = *localtime(&now);
-
-	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
-
-	return buf;*/
-}
 
 void Supermarket::save(){
 	/*	ofstream outfile;
@@ -579,7 +602,7 @@ void Supermarket::invalidInput(string& input){
 		cerr << "Invalid Name!\n";
 		cin.clear();
 		cin.ignore(256, '\n');
-		getline(cin, input);
+		getline(cin, input, '\n');
 		cout << endl;
 
 	}

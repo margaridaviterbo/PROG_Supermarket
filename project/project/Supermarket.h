@@ -18,6 +18,7 @@ class Supermarket{
 private:
 	int lastClientAddedId;
 	int position;
+	bool clientFound;
 	vector<Client> clients;
 	vector<Product*> products;
 	vector<Transaction> transactions;
@@ -40,7 +41,6 @@ public:
 	void createTransaction();
 	void save();
 	Product* getProduct(string productName);
-	const string currentDateTime();
 	void invalidInput(int& input, string msg);
 	void invalidInput(string& input, string msg);
 	void invalidInput(string& input);
