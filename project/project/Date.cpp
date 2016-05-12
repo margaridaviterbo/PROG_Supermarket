@@ -38,9 +38,18 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDayMonthYear(){		//TODO crrigir esta funçao porque está a ler mal as datas
-	istringstream instr(date);
-	instr >> day >> month >> year;
+void Date::setDayMonthYear(){		//TODO crrigir esta funçao porqu 
+	int dmy[3];
+	int j = 0;
+	
+	for (int i = 0; i < date.size(); i + 3){
+		dmy[j] = date.at(i) + date.at(i + 1);
+		j++ ;
+	}
+
+	day = dmy[0];
+	month = dmy[1];
+	year = dmy[2];
 }
 
 bool Date::operator==(string date){
