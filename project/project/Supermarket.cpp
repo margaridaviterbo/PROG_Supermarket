@@ -426,15 +426,15 @@ void Supermarket::addClient(){
 }
 
 void Supermarket::editClient(){
-	/*	string name;
+		string name;
 		int i;
-
-
-		cin.ignore(1);
 
 		cout << "Please search client you want to edit.\n\n";
 
 		searchClient();
+
+		cin.clear();
+		cin.ignore();
 
 		cout << "\n\nNew client name: ";
 
@@ -442,13 +442,10 @@ void Supermarket::editClient(){
 
 		invalidInput(name);
 
-		cin.clear();
-		cin.ignore();
-
 		clients.at(position).setName(name);
 
 		cout << "\n\nClient name changed with success.";
-		*/
+		
 }
 
 void Supermarket::deleteClient(){
