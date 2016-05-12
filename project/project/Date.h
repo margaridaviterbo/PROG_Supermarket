@@ -25,6 +25,7 @@ public:
 	void setDayMonthYear();
 	bool operator==(string date);
 	bool operator<=(Date date);
+	bool operator>=(Date date);
 };
 
 #endif

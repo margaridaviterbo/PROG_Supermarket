@@ -38,7 +38,7 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDayMonthYear(){
+void Date::setDayMonthYear(){		//TODO crrigir esta funçao porque está a ler mal as datas
 	istringstream instr(date);
 	instr >> day >> month >> year;
 }
@@ -61,4 +61,16 @@ bool Date::operator<=(Date date){
 		return true;
 	else
 		return false;
+}
+
+bool Date::operator>=(Date date){
+	if (year > date.year)
+		return true;
+	else if (year == date.year)
+		if (month > date.month)
+			return true;
+		else if ((month == date.month) && (day >= date.day))
+			return true;
+		else
+			return false;
 }

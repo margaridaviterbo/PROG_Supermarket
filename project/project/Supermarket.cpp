@@ -116,7 +116,6 @@ void Supermarket::readTransactions(){
 	infile.close();
 }
 
-
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
 
@@ -363,15 +362,30 @@ void Supermarket::searchTransaction(){	//TODO corrigir esta funçao tendo em cont
 		date2 = Date(date_2);
 
 		while (!(date1 <= date2)){
-			cerr << "First date is more recent than the second one, please fix the error.";
+			cerr << "First date is more recent than the second one, please fix the error (dd/mm/yyyy dd/mm/yyyy):";
 			cin.clear();
 			cin.ignore(256, '\n');
-			cin >>
+			cin >> date_1;
+			cout << endl;
+
+			invalidInput(date_1, "Invalid date\n");
+
+			date1 = Date(date_1);
+
+			cin >> date_2;
+			cout << endl;
+
+			invalidInput(date_2, "Invalid date\n");
+
+			date2 = Date(date_2);
 		}
+
+		cout << date1.getDay() << " " << date1.getMonth() << " " << date1.getYear();
+		cout << endl << date2.getDay() << " " << date1.getMonth() << " " << date2.getYear() << endl;
 
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
-			if (transactions.at(i).getDate().isBetween(date1, date2)){
+			if (transactions.at(i).getDate()>=(date1) && transactions.at(i).getDate()<=(date2)){
 				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
 					<< "\tDate: " << transactions.at(i).getDate().getDate() << setw(20) << "Products: " << transactions.at(i).getProducts().at(0)->getName();
 				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
@@ -379,14 +393,11 @@ void Supermarket::searchTransaction(){	//TODO corrigir esta funçao tendo em cont
 				found = true;
 				cout << endl;
 			}
-
-			if (found == false)
-				cout << "Transaction not found." << endl;
 		}
-
+		if (found == false)
+			cout << "Transaction not found." << endl;
 	}
 }
-
 
 void Supermarket::addClient(){
 	string name;
