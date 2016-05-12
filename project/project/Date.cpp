@@ -38,18 +38,10 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDayMonthYear(){		//TODO crrigir esta funçao porqu 
-	int dmy[3];
-	int j = 0;
-	
-	for (int i = 0; i < date.size(); i + 3){
-		dmy[j] = date.at(i) + date.at(i + 1);
-		j++ ;
-	}
-
-	day = dmy[0];
-	month = dmy[1];
-	year = dmy[2];
+void Date::setDayMonthYear(){
+	day = date.at(0) + date.at(1);
+	month = date.at(3) + date.at(4);
+	year = date.at(6) + date.at(7) + date.at(8) + date.at(9);	//TODO corrigir porque crasha nesta linha (date.at(9))
 }
 
 bool Date::operator==(string date){

@@ -32,15 +32,18 @@ int main(){
 
 void Menu(){
 	int op;
-	cout << "0 - Exit\n";
+	cout << "0 - Exit\n\n";
 	cout << "1 - Cients List\n";
 	cout << "2 - Products List\n";
-	cout << "3 - Transactions List\n";
+	cout << "3 - Transactions List\n" << endl;
+	cout << "___________________________________\n" << endl;
 	cout << "4 - Search Client\n";
 	cout << "5 - Search Transaction\n";
+	cout << "___________________________________\n" << endl;
 	cout << "6 - Add Client\n";
 	cout << "7 - Edit Client\n";
-	cout << "8 - Delete Client\n";
+	cout << "8 - Delete Client\n" << endl;
+	cout << "___________________________________\n" << endl;
 	cout << "9 - Create transaction\n";
 	cout << "10- Recomendation System\n";
 	cout << "11- Save\n\n";
