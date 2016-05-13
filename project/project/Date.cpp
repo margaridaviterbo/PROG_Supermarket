@@ -39,7 +39,7 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano
+void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano FAZER BUFF.STR("") EM VEZ DE CLEAR
 	stringstream buf;
 	int temp;
 	char tmp_str[2];
@@ -48,6 +48,10 @@ void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano
 	tmp_str[0] = date.c_str()[0];
 	tmp_str[1] = date.c_str()[1];
 
+
+	cout << tmp_str[0] << endl;
+	cout << tmp_str[1] << endl;	
+
 	buf << tmp_str;
 	buf >> day;
 	buf.clear();
@@ -55,6 +59,12 @@ void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano
 
 	tmp_str[0] = date.c_str()[3];
 	tmp_str[1] = date.c_str()[4];
+
+	cout << "Mes " << endl;
+	cout << tmp_str[0] << endl;
+	cout << tmp_str[1] << endl;
+	 
+	buf.str("");
 
 	buf << tmp_str;
 	buf >> month;
@@ -65,6 +75,12 @@ void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano
 	tmp_year[1] = date.c_str()[7];
 	tmp_year[2] = date.c_str()[8];
 	tmp_year[3] = date.c_str()[9];
+
+	cout << "Ano " << endl;
+	cout << tmp_year[0] << endl;
+	cout << tmp_year[1] << endl;
+	cout << tmp_year[2] << endl;
+	cout << tmp_year[3] << endl;
 
 	buf << tmp_str;
 	buf >> year;

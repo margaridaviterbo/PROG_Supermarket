@@ -379,6 +379,7 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe
 			date2 = Date(date_2);
 		}
 
+		cout << date1.getDate() << endl << date2.getDate() << endl;
 		cout << date1.getDay() << " " << date1.getMonth() << " " << date1.getYear();
 		cout << endl << date2.getDay() << " " << date1.getMonth() << " " << date2.getYear() << endl;
 
