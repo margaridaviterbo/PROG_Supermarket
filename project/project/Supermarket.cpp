@@ -498,13 +498,15 @@ void Supermarket::createTransaction(){
 	}
 
 	printProducts();
-	cout << "Insert products to buy (separated by comma without spaces): ";
+	cout << "Insert products to buy (separated by comma without spaces and end with period): ";
 	cin >> str_products;
 
 	invalidInput(str_products, "Invalid input!\n");
 
+	cout << str_products << endl;
+
 	for (i = 0; i < str_products.size(); i++){
-		if (str_products.at(i) != ','){
+		if (str_products.at(i) != ',' && str_products.at(i) != '.'){
 			productName = productName + str_products.at(i);
 		}
 		else{
