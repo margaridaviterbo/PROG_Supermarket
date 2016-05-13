@@ -3,7 +3,7 @@
 using namespace std;
 
 //TODO corrigir funçoes que faltam
-//TODO mudar vetor clientes para produtos
+//TODO mudar vetor clientes para map
 
 Supermarket::Supermarket(){
 	readClients();
@@ -231,13 +231,12 @@ void Supermarket::searchClient(){
 		cout << endl;
 	}
 
-	cin.clear();
-	cin.ignore();
-
 
 	if (op == 1){
 		cout << "Client ID: ";
 		cin >> id;
+		cin.clear();
+		cin.ignore(256, '\n');
 		cout << endl;
 
 		invalidInput(id, "Invalid id!\n");
@@ -277,7 +276,7 @@ void Supermarket::searchClient(){
 	return;
 }
 
-void Supermarket::searchTransaction(){	
+void Supermarket::searchTransaction(){
 	int i, j;
 	int op;
 	int id;
@@ -432,8 +431,6 @@ void Supermarket::editClient(){
 
 	searchClient();
 
-	cin.clear();
-
 	if (clientFound == true){
 
 		cout << "\n\nNew client name: ";
@@ -503,21 +500,16 @@ void Supermarket::createTransaction(){
 
 	invalidInput(str_products, "Invalid input!\n");
 
-	cout << str_products << endl;
-
 	for (i = 0; i < str_products.size(); i++){
 		if (str_products.at(i) != ',' && str_products.at(i) != '.'){
 			productName = productName + str_products.at(i);
 		}
 		else{
-			cout << "aqui1" << endl;
 			if (getProduct(productName) == NULL)
 				cout << endl << "Product " << productName << " doens't exist therefore it wasn't added to your shopping list." << endl << endl;
 			else{
-				cout << "aqui2" << endl;
 				productsTransaction.push_back(getProduct(productName));
 			}
-			cout << "aqui3" << endl;
 			productName = "";
 		}
 	}
@@ -537,7 +529,7 @@ void Supermarket::createTransaction(){
 
 	transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
 	cout << endl << "Successful purchase." << endl;
-	
+
 	if (op == 1)
 		clients.at(position).updateAmoutSpent(productsTransaction);
 	else
@@ -546,36 +538,38 @@ void Supermarket::createTransaction(){
 }
 
 void Supermarket::save(){
-	/*	ofstream outfile;
-		int i, j;
+	ofstream outfile;
+	int i, j;
 
-		outfile.open("Clients.csv");
+	outfile.open("Clients.csv");
 
-		for (i = 0; i < clients.size(); i++){
+	for (i = 0; i < clients.size(); i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getAmountSpent() << endl;
-		}
-		outfile.close();
+	}
+	outfile.close();
 
-		outfile.open("Products.csv");
+	outfile.open("Products.csv");
 
-		for (i = 0; i < products.size(); i++){
+	for (i = 0; i < products.size(); i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
-		}
+	}
 
-		outfile.close();
+	outfile.close();
 
-		outfile.open("Transactions.csv");
+	outfile.open("Transactions.csv");
 
-		for (i = 0; i < transactions.size(); i++){
+	for (i = 0; i < transactions.size(); i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
-		<< transactions.at(i).getProducts().at(0)->getName();
+			<< transactions.at(i).getProducts().at(0)->getName();
 
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
-		outfile << ", " << transactions.at(i).getProducts().at(j)->getName();
+			outfile << ", " << transactions.at(i).getProducts().at(j)->getName();
 		}
 		outfile << endl;
-		}
-		outfile.close();*/
+	}
+	outfile.close();
+
+	cout << "Data saved with success." << endl;
 }
 
 void Supermarket::invalidInput(int& input, string msg){
