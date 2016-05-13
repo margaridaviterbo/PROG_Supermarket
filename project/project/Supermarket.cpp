@@ -255,13 +255,10 @@ void Supermarket::searchClient(){
 	else{
 		cout << "Client Complete Name: ";
 		cin.clear();
-		//cin.ignore(256, '\n');
 		getline(cin, name);
 		cout << endl;
 
 		invalidInput(name);
-
-		cout << "jyf\n";
 
 		clientFound = false;
 		for (i = 0; i < clients.size(); i++){
@@ -269,6 +266,7 @@ void Supermarket::searchClient(){
 				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 				position = i;
 				clientFound = true;
+				break;
 			}
 		}
 		if (clientFound == false)
@@ -434,7 +432,6 @@ void Supermarket::editClient(){
 		searchClient();
 
 		cin.clear();
-		cin.ignore();
 
 		if (clientFound == true){
 

@@ -2,7 +2,7 @@
 #define DATE_H
 #include<iostream>
 #include<string>
-#include<sstream>
+#include<istream>
 
 using namespace std;
 

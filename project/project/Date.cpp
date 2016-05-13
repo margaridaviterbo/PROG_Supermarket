@@ -39,9 +39,12 @@ void Date::setDate(){
 }
 
 void Date::setDayMonthYear(){
-	day = date.at(0) + date.at(1);
-	month = date.at(3) + date.at(4);
-	/*year = date.at(6) + date.at(7) + date.at(8) + date.at(9);*/	//TODO corrigir porque crasha nesta linha (date.at(9))
+	//day = date.at(0) + date.at(1);
+	//month = date.at(3) + date.at(4);
+	///*year = date.at(6) + date.at(7) + date.at(8) + date.at(9);*/	//TODO corrigir porque crasha nesta linha (date.at(9))
+
+	istream datestream(date);
+
 }
 
 bool Date::operator==(string date){
