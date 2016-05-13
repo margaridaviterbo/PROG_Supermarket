@@ -277,7 +277,7 @@ void Supermarket::searchClient(){
 	return;
 }
 
-void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe data tem um erro
+void Supermarket::searchTransaction(){	
 	int i, j;
 	int op;
 	int id;
@@ -315,9 +315,10 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe
 					<< "\tDate: " << transactions.at(i).getDate().getDate()
 					<< "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
 				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName() << endl << endl;
+					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
 				found = true;
 			}
+			cout << endl;
 		}
 		if (found == false)
 			cout << "Transaction not found." << endl;
@@ -331,15 +332,16 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe
 
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
-			if (transactions.at(i).getDate() == date_1){
+			if (transactions.at(i).getDate() == (date_1)){
 				cout << "Transaction ID: " << transactions.at(i).getId()
 					<< "\tClient ID: " << transactions.at(i).getClientId()
 					<< "\tDate: " << transactions.at(i).getDate().getDate()
 					<< "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
 				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName() << endl << endl;
+					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
 				found = true;
 			}
+			cout << endl;
 		}
 		if (found == false)
 			cout << "Transaction not found." << endl;
@@ -379,10 +381,6 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe
 			date2 = Date(date_2);
 		}
 
-		cout << date1.getDate() << endl << date2.getDate() << endl;
-		cout << date1.getDay() << " " << date1.getMonth() << " " << date1.getYear();
-		cout << endl << date2.getDay() << " " << date1.getMonth() << " " << date2.getYear() << endl;
-
 		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate() >= (date1) && transactions.at(i).getDate() <= (date2)){
@@ -393,6 +391,7 @@ void Supermarket::searchTransaction(){	//TODO ainda nao funciona porque a classe
 				found = true;
 				cout << endl;
 			}
+			cout << endl;
 		}
 		if (found == false)
 			cout << "Transaction not found." << endl;
