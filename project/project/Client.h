@@ -2,6 +2,8 @@
 #define CLIENT_H
 #include<iostream>
 #include<string>
+#include<vector>
+#include"Product.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ public:
 	double getAmountSpent();
 	bool isEqual(int id);
 	bool isEqual(string name);
+	void updateAmoutSpent(vector<Product*> newProducts);
 };
 
 

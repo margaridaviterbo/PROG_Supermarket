@@ -124,6 +124,7 @@ Product* Supermarket::getProduct(string productName){
 			return products.at(i);
 		i++;
 	}
+	return NULL;
 }
 
 void Supermarket::printClients(){
@@ -488,32 +489,41 @@ void Supermarket::createTransaction(){
 	if (op == 1){
 		searchClient();
 		cout << endl << endl;
-		cin.clear();
-		cin.ignore();
+		while (clientFound == false)
+			searchClient();
+	}
+
+	if (op == 2){
+		addClient();
 	}
 
 	printProducts();
-	cout << "Insert products to buy (separated by comma): ";
+	cout << "Insert products to buy (separated by comma without spaces): ";
 	cin >> str_products;
 
 	invalidInput(str_products, "Invalid input!\n");
-
-	cin.clear();
-	cin.ignore();
 
 	for (i = 0; i < str_products.size(); i++){
 		if (str_products.at(i) != ','){
 			productName = productName + str_products.at(i);
 		}
 		else{
-			productsTransaction.push_back(getProduct(productName));
+			cout << "aqui1" << endl;
+			if (getProduct(productName) == NULL)
+				cout << endl << "Product " << productName << " doens't exist therefore it wasn't added to your shopping list." << endl << endl;
+			else{
+				cout << "aqui2" << endl;
+				productsTransaction.push_back(getProduct(productName));
+			}
+			cout << "aqui3" << endl;
 			productName = "";
 		}
 	}
 	str_products.clear();
 	productName.clear();
 
-	cout << "Date (dd/mm/yyyy): ";
+	cout << "Date of the purchase (dd/mm/yyyy): ";
+	cin.ignore(256, '\n');
 	cin >> date_str;
 	cout << endl;
 
@@ -524,6 +534,12 @@ void Supermarket::createTransaction(){
 	id = transactions.back().getId() + 1;
 
 	transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
+	cout << endl << "Successful purchase." << endl;
+	
+	if (op == 1)
+		clients.at(position).updateAmoutSpent(productsTransaction);
+	else
+		clients.back().updateAmoutSpent(productsTransaction);
 
 }
 

@@ -16,7 +16,7 @@ Transaction::Transaction(int id, int clientId, Date date, vector<Product*> produ
 	this->clientId = clientId;
 	this->date = date;
 	for (i = 0; i < productsT.size(); i++){
-		products.push_back(products.at(i));
+		products.push_back(productsT.at(i));
 	}
 	
 }
