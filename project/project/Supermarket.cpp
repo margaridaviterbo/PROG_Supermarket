@@ -2,9 +2,6 @@
 
 using namespace std;
 
-//TODO corrigir funçoes que faltam
-//TODO mudar vetor clientes para map
-
 Supermarket::Supermarket(){
 	readClients();
 	readProducts();
@@ -225,9 +222,9 @@ void Supermarket::searchClient(){
 
 	while (cin.fail() || (op != 1 && op != 2)) {
 		cerr << "Invalid input! Please enter a number from the menu.\n";
+		cin >> op;
 		cin.clear();
 		cin.ignore(256, '\n');
-		cin >> op;
 		cout << endl;
 	}
 
@@ -244,17 +241,14 @@ void Supermarket::searchClient(){
 		clientFound = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(id)){
-				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
-				position = i;
-				clientFound = true;
+				printSelectedClient(i);
 			}
 		}
-		if (clientFound == false)
-			cout << "Client not found.";
 	}
 	else{
 		cout << "Client Complete Name: ";
 		cin.clear();
+		cin.ignore(256, '\n');
 		getline(cin, name);
 		cout << endl;
 
@@ -263,17 +257,20 @@ void Supermarket::searchClient(){
 		clientFound = false;
 		for (i = 0; i < clients.size(); i++){
 			if (clients.at(i).isEqual(name)){
-				cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
-				position = i;
-				clientFound = true;
-				break;
+				printSelectedClient(i);
 			}
 		}
-		if (clientFound == false)
-			cout << "Client not found.";
-
 	}
+	if (clientFound == false)
+		cout << "Client not found.";
+
 	return;
+}
+
+void Supermarket::printSelectedClient(int i){
+	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+	position = i;
+	clientFound = true;
 }
 
 void Supermarket::searchTransaction(){

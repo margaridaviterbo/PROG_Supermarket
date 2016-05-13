@@ -34,6 +34,7 @@ public:
 	void printProducts();
 	void printTransactions();
 	void searchClient();
+	void printSelectedClient(int i);
 	void searchTransaction();
 	void addClient();
 	void editClient();
