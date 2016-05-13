@@ -16,7 +16,7 @@ private:
 	vector<Product*> products;
 public:
 	Transaction(int id, int clientId, Date date);	
-	Transaction(int id, int clientId, Date date, vector<Product> productsT);
+	Transaction(int id, int clientId, Date date, vector<Product*> productsT);
 	int getId();
 	int getClientId();
 	Date getDate();

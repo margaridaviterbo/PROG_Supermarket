@@ -1,4 +1,5 @@
 #include"Date.h"
+#include <sstream>
 
 using namespace std;
 
@@ -38,13 +39,37 @@ void Date::setDate(){
 	date = day + '/' + month + '/' + year;
 }
 
-void Date::setDayMonthYear(){
-	//day = date.at(0) + date.at(1);
-	//month = date.at(3) + date.at(4);
-	///*year = date.at(6) + date.at(7) + date.at(8) + date.at(9);*/	//TODO corrigir porque crasha nesta linha (date.at(9))
+void Date::setDayMonthYear(){		//TODO corrigir porque guarda lixo em mes e ano
+	stringstream buf;
+	int temp;
+	char tmp_str[2];
+	char tmp_year[4];
 
-	istream datestream(date);
+	tmp_str[0] = date.c_str()[0];
+	tmp_str[1] = date.c_str()[1];
 
+	buf << tmp_str;
+	buf >> day;
+	buf.clear();
+	buf.ignore();
+
+	tmp_str[0] = date.c_str()[3];
+	tmp_str[1] = date.c_str()[4];
+
+	buf << tmp_str;
+	buf >> month;
+	buf.clear();
+	buf.ignore();
+
+	tmp_year[0] = date.c_str()[6];
+	tmp_year[1] = date.c_str()[7];
+	tmp_year[2] = date.c_str()[8];
+	tmp_year[3] = date.c_str()[9];
+
+	buf << tmp_str;
+	buf >> year;
+	buf.clear();
+	buf.ignore();
 }
 
 bool Date::operator==(string date){

@@ -10,7 +10,7 @@ Transaction::Transaction(int id, int clientId, Date date) {
 	this->date = date;
 }
 
-Transaction::Transaction(int id, int clientId, Date date, vector<Product> productsT){
+Transaction::Transaction(int id, int clientId, Date date, vector<Product*> productsT){
 	int i;
 	this->id = id;
 	this->clientId = clientId;
