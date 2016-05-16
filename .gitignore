@@ -257,7 +257,7 @@ paket-files/
 
 
 ### Eclipse ###
-
+CMakeLists.txt
 .metadata
 bin/
 tmp/

@@ -2,8 +2,6 @@
 
 using namespace std;
 
-//ola
-
 Client::Client(){
 
 }
