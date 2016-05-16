@@ -93,14 +93,14 @@ void Supermarket::readTransactions(){
 			date = Date(d);
 			transactions.push_back(Transaction(id, clientId, date));
 			getline(infile, strProducts);
-
+			strProducts += ",";
 			i = 0;
 			while (i < strProducts.size()){
 				if (strProducts.at(i) != ','){
 					productName = productName + strProducts.at(i);
-				}
-				else{
-					transactions.back().addProduct(getProduct(productName));
+					}
+				else {
+					transactions.back().addProduct(getProduct(productName)); 
 					productName = "";
 				}
 				i++;
