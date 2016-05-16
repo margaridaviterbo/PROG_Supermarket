@@ -27,9 +27,9 @@ void Supermarket::readClients(){
 	string trash;
 
 	ifstream infile;
-	infile.open("Clients.csv");
+	infile.open("Clients.txt");
 	if (infile.fail()){
-		cerr << "Error opening file Clients.csv";
+		cerr << "Error opening file Clients.txt";
 		exit(1);
 	}
 	else{
@@ -51,9 +51,9 @@ void Supermarket::readProducts(){
 	string trash;
 	ifstream infile;
 
-	infile.open("Products.csv");
+	infile.open("Products.txt");
 	if (infile.fail()){
-		cerr << "Error opening file Products.csv";
+		cerr << "Error opening file Products.txt";
 		exit(1);
 	}
 	else{
@@ -78,9 +78,9 @@ void Supermarket::readTransactions(){
 	string trash;
 	ifstream infile;
 
-	infile.open("Transactions.csv");
+	infile.open("Transactions.txt");
 	if (infile.fail()){
-		cerr << "Error opening file " << "Transactions.csv";
+		cerr << "Error opening file " << "Transactions.txt";
 		exit(1);
 	}
 	else{

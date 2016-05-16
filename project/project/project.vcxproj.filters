@@ -52,8 +52,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Clients.csv" />
-    <None Include="Products.csv" />
-    <None Include="Transactions.csv" />
+    <Text Include="Clients.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Products.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Transactions.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
