@@ -6,9 +6,10 @@ Client::Client(){
 
 }
 
-Client::Client(int id, string name, double amountSpent){
+Client::Client(int id, string name, Date subscriptionDate, double amountSpent){
 	this->id = id;
 	this->name = name;
+	this->subscriptionDate = subscriptionDate;
 	this->amountSpent = amountSpent;
 }
 
@@ -18,6 +19,10 @@ int Client::getId(){
 
 string Client::getName(){
 	return name;
+}
+
+Date Client::getSubscriptionDate(){
+	return subscriptionDate;
 }
 
 void Client::setName(string name){

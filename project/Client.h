@@ -4,6 +4,7 @@
 #include<string>
 #include<vector>
 #include"Product.h"
+#include"Date.h"
 
 using namespace std;
 
@@ -12,12 +13,14 @@ class Client{
 private:
 	int id;
 	string name;
+	Date subscriptionDate;
 	double amountSpent;
 public:
 	Client();
-	Client(int id, string name, double amountSpent);
+	Client(int id, string name, Date subscriptionDate, double amountSpent);
 	int getId();
 	string getName();
+	Date getSubscriptionDate();
 	void setName(string name);
 	double getAmountSpent();
 	bool isEqual(int id);

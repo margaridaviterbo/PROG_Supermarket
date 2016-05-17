@@ -23,6 +23,7 @@ vector<Transaction> Supermarket::getTransactions(){
 void Supermarket::readClients(){
 	int id;
 	string name;
+	string date;
 	float amountSpent;
 	string trash;
 
@@ -37,8 +38,9 @@ void Supermarket::readClients(){
 			infile >> id;
 			getline(infile, trash, ';');
 			getline(infile, name, ';');
+			getline(infile, date, ';');
 			infile >> amountSpent;
-			clients.push_back(Client(id, name, amountSpent));
+			clients.push_back(Client(id, name, Date(date), amountSpent));
 			lastClientAddedId = clients.back().getId();
 		}
 	}
@@ -128,16 +130,18 @@ void Supermarket::printClients(){
 	int i;
 
 	cout << setw(50) << "CLIENTS\n";
-	cout << "_________________________________________________________________________________________\n\n";
+	cout << "______________________________________________________________________________________________________________________________________\n\n";
 
 	cout << setw(10) << "ID" <<
 		setw(10) << "|" <<
 		setw(30) << "Name" <<
 		setw(20) << "|" <<
+		setw(25) << "Subscription Date" <<
+		setw(15) << "|" <<
 		setw(15) << "Amount Spent" <<
-		setw(10) << '\n';
+		setw(15) << '\n';
 
-	cout << "_________________________________________________________________________________________\n";
+	cout << "______________________________________________________________________________________________________________________________________\n";
 
 
 	for (i = 0; i < clients.size(); i++){
@@ -146,6 +150,8 @@ void Supermarket::printClients(){
 			setw(10) << "|" <<
 			setw(40) << clients.at(i).getName() <<
 			setw(10) << "|" <<
+			setw(20) << clients.at(i).getSubscriptionDate().getDate() <<
+			setw(20) << "|" <<
 			setw(10) << clients.at(i).getAmountSpent() <<
 			setw(10) << '\n';
 	}
@@ -268,7 +274,7 @@ void Supermarket::searchClient(){
 }
 
 void Supermarket::printSelectedClient(int i){
-	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\tSubscription Date: " << clients.at(i).getSubscriptionDate().getDate() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
 	position = i;
 	clientFound = true;
 }
@@ -384,6 +390,7 @@ void Supermarket::printSelectedTransaction(int i){
 
 void Supermarket::addClient(){
 	string name;
+	string date;
 	ofstream outfile;
 
 	lastClientAddedId = lastClientAddedId + 1;
@@ -397,14 +404,15 @@ void Supermarket::addClient(){
 
 	cin.clear();
 
-	clients.push_back(Client(lastClientAddedId, name, 0));
+	cout << "Subscription Date (dd/mm/yyyy): ";
+	getline(cin, date);
+
+	invalidInput(date, "Invalid date!");
+
+	cin.clear();
+
+	clients.push_back(Client(lastClientAddedId, name, Date(date), 0));
 	cout << "Client added with success.\n\n";
-
-	outfile.open("Clients.csv");
-
-	outfile << clients.back().getId() << ";" << clients.back().getName() << ";" << clients.back().getAmountSpent() << endl;
-
-	outfile.close();
 
 }
 
@@ -529,7 +537,7 @@ void Supermarket::save(){
 	outfile.open("Clients.txt");
 
 	for (i = 0; i < clients.size(); i++){
-		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getAmountSpent() << endl;
+		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent() << endl;
 	}
 	outfile.close();
 
