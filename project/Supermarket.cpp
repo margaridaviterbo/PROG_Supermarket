@@ -274,10 +274,9 @@ void Supermarket::printSelectedClient(int i){
 }
 
 void Supermarket::searchTransaction(){
-	int i, j;
+	int i;
 	int op;
 	int id;
-	bool found;
 	string date_1, date_2;
 	Date date1;
 	Date date2;
@@ -295,6 +294,7 @@ void Supermarket::searchTransaction(){
 		cout << endl;
 	}
 
+	transactionFound = false;
 
 	if (op == 1){
 		cout << "Client ID: ";
@@ -303,21 +303,12 @@ void Supermarket::searchTransaction(){
 
 		invalidInput(id, "Invalid id!\n");
 
-		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).isEqual(id)){
-				cout << "Transaction ID: " << transactions.at(i).getId()
-					<< "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate()
-					<< "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
-				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
-				found = true;
+				printSelectedTransaction(i);
 			}
-			cout << endl;
 		}
-		if (found == false)
-			cout << "Transaction not found." << endl;
+		cout << endl;
 	}
 	else if (op == 2){
 		cout << "Search transactions in date (dd/mm/yyyy): ";
@@ -326,21 +317,12 @@ void Supermarket::searchTransaction(){
 
 		invalidInput(date_1, "Invalid date\n");
 
-		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate() == (date_1)){
-				cout << "Transaction ID: " << transactions.at(i).getId()
-					<< "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate()
-					<< "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
-				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
-				found = true;
+				printSelectedTransaction(i);
 			}
-			cout << endl;
 		}
-		if (found == false)
-			cout << "Transaction not found." << endl;
+		cout << endl;
 	}
 	else{
 		cout << "Search transactions between date 1 and date 2 (dd/mm/yyyy dd/mm/yyyy): ";
@@ -377,21 +359,27 @@ void Supermarket::searchTransaction(){
 			date2 = Date(date_2);
 		}
 
-		found = false;
 		for (i = 0; i < transactions.size(); i++){
 			if (transactions.at(i).getDate() >= (date1) && transactions.at(i).getDate() <= (date2)){
-				cout << "Transaction ID: " << transactions.at(i).getId() << "\tClient ID: " << transactions.at(i).getClientId()
-					<< "\tDate: " << transactions.at(i).getDate().getDate() << setw(20) << "Products: " << transactions.at(i).getProducts().at(0)->getName();
-				for (j = 1; j < transactions.at(i).getProducts().size(); j++)
-					cout << ", " << transactions.at(i).getProducts().at(j)->getName();
-				found = true;
-				cout << endl;
+				printSelectedTransaction(i);
 			}
-			cout << endl;
 		}
-		if (found == false)
-			cout << "Transaction not found." << endl;
+		cout << endl;
 	}
+	if (transactionFound == false)
+		cout << "Transaction not found." << endl;
+}
+
+void Supermarket::printSelectedTransaction(int i){
+	int j;
+	cout << "Transaction ID: " << transactions.at(i).getId()
+		<< "\tClient ID: " << transactions.at(i).getClientId()
+		<< "\tDate: " << transactions.at(i).getDate().getDate()
+		<< "\tProducts: " << transactions.at(i).getProducts().at(0)->getName();
+	for (j = 1; j < transactions.at(i).getProducts().size(); j++)
+		cout << ", " << transactions.at(i).getProducts().at(j)->getName();
+	cout << endl;
+	transactionFound = true;
 }
 
 void Supermarket::addClient(){
@@ -538,14 +526,14 @@ void Supermarket::save(){
 	ofstream outfile;
 	int i, j;
 
-	outfile.open("Clients.csv");
+	outfile.open("Clients.txt");
 
 	for (i = 0; i < clients.size(); i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getAmountSpent() << endl;
 	}
 	outfile.close();
 
-	outfile.open("Products.csv");
+	outfile.open("Products.txt");
 
 	for (i = 0; i < products.size(); i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
@@ -553,7 +541,7 @@ void Supermarket::save(){
 
 	outfile.close();
 
-	outfile.open("Transactions.csv");
+	outfile.open("Transactions.txt");
 
 	for (i = 0; i < transactions.size(); i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"

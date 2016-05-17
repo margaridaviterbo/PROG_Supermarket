@@ -19,6 +19,7 @@ private:
 	int lastClientAddedId;
 	int position;
 	bool clientFound;
+	bool transactionFound;
 	vector<Client> clients;
 	vector<Product*> products;
 	vector<Transaction> transactions;
@@ -36,6 +37,7 @@ public:
 	void searchClient();
 	void printSelectedClient(int i);
 	void searchTransaction();
+	void printSelectedTransaction(int i);
 	void addClient();
 	void editClient();
 	void deleteClient();

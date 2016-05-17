@@ -20,13 +20,14 @@ enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, SEARCH_TRANS
 Supermarket supermarket;
 
 int main(){
-
+	int x;
 	cout << "WELCOME TO SUPERMARKET MANAGER!!!\n";
 	cout << "_________________________________\n\n";
 
 	Menu();
 
 	system("pause");
+	cin >> x;
 	return 0;
 }
 
