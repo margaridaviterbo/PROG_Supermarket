@@ -38,7 +38,6 @@ vector<Product*> Transaction::getProducts(){
 }
 
 void Transaction::addProduct(Product* product){
-	cerr << "Transaction::addProduct -" << product->getName() << endl;
 	products.push_back(product);
 }
 

@@ -64,6 +64,7 @@ void Supermarket::readProducts(){
 	ifstream infile = openFile(productFile);
 
 	infile >> nProducts;
+	getline(infile, trash, '\n');
 
 	while (!infile.eof()){
 		getline(infile, name, ';');
@@ -109,8 +110,8 @@ void Supermarket::readTransactions(){
 			}
 			i++;
 		}
-		strProducts.clear();
-		productName.clear();
+		strProducts = "";
+		productName = "";
 
 	}
 	infile.close();
@@ -130,7 +131,6 @@ ifstream Supermarket::openFile(string fileName){
 
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
-
 	while (i < products.size()){
 		if (products.at(i)->isEqual(productName))
 			return products.at(i);
@@ -579,7 +579,7 @@ void Supermarket::save(){
 			<< transactions.at(i).getProducts().at(0)->getName();
 
 		for (j = 1; j < transactions.at(i).getProducts().size(); j++){
-			outfile << ", " << transactions.at(i).getProducts().at(j)->getName();
+			outfile << "," << transactions.at(i).getProducts().at(j)->getName();
 		}
 		outfile << endl;
 	}
