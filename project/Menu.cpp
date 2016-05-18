@@ -11,26 +11,28 @@
 using namespace std;
  
 
-void selectOption(int op);
-void Menu();
-void endMenu();
+void selectOption(int op, Supermarket &supermarket);
+void Menu(Supermarket &supermarket);
+void endMenu(Supermarket &supermarket);
 void space();
 
 enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, SEARCH_TRANSACTION, ADD_CLIENT, EDIT_CLIENT, DELETE_CLIENT, CREATE_TRANSACTION, RECOMENDATION_SYSTEM, SAVE, MENU };
-Supermarket supermarket;
 
 int main(){
 
 	cout << "WELCOME TO SUPERMARKET MANAGER!!!\n";
 	cout << "_________________________________\n\n";
 
-	Menu();
+	cout << "We need to update your database begore you begin. Please enter the name of the files that contain the necessary information!\n\n";
+	Supermarket supermarket;
+
+	Menu(supermarket);
 
 	system("pause");
 	return 0;
 }
 
-void Menu(){
+void Menu(Supermarket &supermarket){
 	int op;
 	cout << "0 - Exit\n\n";
 	cout << "1 - Cients List\n";
@@ -58,10 +60,10 @@ void Menu(){
 		cin >> op;
 		cout << endl;
 	}
-	selectOption(op);
+	selectOption(op, supermarket);
 }
 
-void endMenu(){
+void endMenu(Supermarket &supermarket){
 	int op;
 	cout << "\n\n";
 	cout << "Choose an option:\n\n";
@@ -78,7 +80,7 @@ void endMenu(){
 		cout << endl;
 	}
 
-	selectOption(op);
+	selectOption(op, supermarket);
 }
 
 void space(){
@@ -87,7 +89,7 @@ void space(){
 		cout << endl;
 }
 
-void selectOption(int op){
+void selectOption(int op, Supermarket &supermarket){
 
 	switch (op) {
 	case EXIT:
@@ -96,63 +98,63 @@ void selectOption(int op){
 	case CLIENTS:
 		space();
 		supermarket.printClients();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case PRODUCTS:
 		space();
 		supermarket.printProducts();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case TRANSACTIONS:
 		space();
 		supermarket.printTransactions();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case SEARCH_CLIENT:
 		space();
 		supermarket.searchClient();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case SEARCH_TRANSACTION:
 		space();
 		supermarket.searchTransaction();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case ADD_CLIENT:
 		space();
 		supermarket.addClient();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case EDIT_CLIENT:
 		space();
 		supermarket.editClient();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case DELETE_CLIENT:
 		space();
 		supermarket.deleteClient();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case CREATE_TRANSACTION:
 		space();
 		supermarket.createTransaction();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case RECOMENDATION_SYSTEM:
 		space();
 //		supermarket.runRecomendationSystem();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case SAVE:
 		space();
 		supermarket.save();
-		endMenu();
+		endMenu(supermarket);
 		break;
 	case MENU:
 		space();
 		cout << "MENU:\n";
 		cout << "_____\n\n";
-		Menu();
+		Menu(supermarket);
 		break;
 	}
 }

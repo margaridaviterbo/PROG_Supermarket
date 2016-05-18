@@ -3,9 +3,22 @@
 using namespace std;
 
 Supermarket::Supermarket(){
+	cout << "Name of the clients' file (xxxxxxx.txt): ";
+	getline(cin, clientFile);
+	invalidInput(clientFile);
 	readClients();
+
+	cout << "\n\nName of the products' file (xxxxxxx.txt): ";
+	getline(cin, productFile);
+	invalidInput(productFile);
 	readProducts();
+
+	cout << "\n\nName od the transactions' file (xxxxxxx.txt): ";
+	getline(cin, transactionFile);
+	invalidInput(transactionFile);
 	readTransactions();
+
+	cout << endl << endl;
 }
 
 vector<Client> Supermarket::getClients(){
@@ -26,23 +39,16 @@ void Supermarket::readClients(){
 	string date;
 	float amountSpent;
 	string trash;
+	ifstream infile = openFile(clientFile);
 
-	ifstream infile;
-	infile.open("Clients.txt");
-	if (infile.fail()){
-		cerr << "Error opening file Clients.txt";
-		exit(1);
-	}
-	else{
-		while (!infile.eof()){
-			infile >> id;
-			getline(infile, trash, ';');
-			getline(infile, name, ';');
-			getline(infile, date, ';');
-			infile >> amountSpent;
-			clients.push_back(Client(id, name, Date(date), amountSpent));
-			lastClientAddedId = clients.back().getId();
-		}
+	while (!infile.eof()){
+		infile >> id;
+		getline(infile, trash, ';');
+		getline(infile, name, ';');
+		getline(infile, date, ';');
+		infile >> amountSpent;
+		clients.push_back(Client(id, name, Date(date), amountSpent));
+		lastClientAddedId = clients.back().getId();
 	}
 	infile.close();
 }
@@ -51,21 +57,15 @@ void Supermarket::readProducts(){
 	string name;
 	float price;
 	string trash;
-	ifstream infile;
+	ifstream infile = openFile(productFile);
 
-	infile.open("Products.txt");
-	if (infile.fail()){
-		cerr << "Error opening file Products.txt";
-		exit(1);
+	while (!infile.eof()){
+		getline(infile, name, ';');
+		infile >> price;
+		getline(infile, trash, '\n');
+		products.push_back(new Product(name, price));
 	}
-	else{
-		while (!infile.eof()){
-			getline(infile, name, ';');
-			infile >> price;
-			getline(infile, trash, '\n');
-			products.push_back(new Product(name, price));
-		}
-	}
+
 	infile.close();
 }
 
@@ -78,41 +78,46 @@ void Supermarket::readTransactions(){
 	string strProducts;
 	string productName = "";
 	string trash;
-	ifstream infile;
+	ifstream infile = openFile(transactionFile);
 
-	infile.open("Transactions.txt");
-	if (infile.fail()){
-		cerr << "Error opening file " << "Transactions.txt";
-		exit(1);
-	}
-	else{
-		while (!infile.eof()){
-			infile >> id;
-			getline(infile, trash, ';');
-			infile >> clientId;
-			getline(infile, trash, ';');
-			getline(infile, d, ';');
-			date = Date(d);
-			transactions.push_back(Transaction(id, clientId, date));
-			getline(infile, strProducts);
-			strProducts += ",";
-			i = 0;
-			while (i < strProducts.size()){
-				if (strProducts.at(i) != ','){
-					productName = productName + strProducts.at(i);
-					}
-				else {
-					transactions.back().addProduct(getProduct(productName)); 
-					productName = "";
-				}
-				i++;
+	while (!infile.eof()){
+		infile >> id;
+		getline(infile, trash, ';');
+		infile >> clientId;
+		getline(infile, trash, ';');
+		getline(infile, d, ';');
+		date = Date(d);
+		transactions.push_back(Transaction(id, clientId, date));
+		getline(infile, strProducts);
+		strProducts += ",";
+		i = 0;
+		while (i < strProducts.size()){
+			if (strProducts.at(i) != ','){
+				productName = productName + strProducts.at(i);
 			}
-			strProducts.clear();
-			productName.clear();
-
+			else {
+				transactions.back().addProduct(getProduct(productName));
+				productName = "";
+			}
+			i++;
 		}
+		strProducts.clear();
+		productName.clear();
+
 	}
 	infile.close();
+}
+
+ifstream Supermarket::openFile(string fileName){
+	ifstream infile;
+	infile.open(fileName);
+	while (infile.fail()){
+		cerr << "Error opening file " << fileName << ". This file might not exist. Please enter a new name for the file: ";
+		getline(cin, fileName, '\n');
+		invalidInput(fileName);
+		infile.open(fileName);
+	}
+	return infile;
 }
 
 Product* Supermarket::getProduct(string productName){
@@ -534,14 +539,14 @@ void Supermarket::save(){
 	ofstream outfile;
 	int i, j;
 
-	outfile.open("Clients.txt");
+	outfile.open(clientFile);
 
 	for (i = 0; i < clients.size(); i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent() << endl;
 	}
 	outfile.close();
 
-	outfile.open("Products.txt");
+	outfile.open(productFile);
 
 	for (i = 0; i < products.size(); i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
@@ -549,7 +554,7 @@ void Supermarket::save(){
 
 	outfile.close();
 
-	outfile.open("Transactions.txt");
+	outfile.open(transactionFile);
 
 	for (i = 0; i < transactions.size(); i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
@@ -591,7 +596,7 @@ void Supermarket::invalidInput(string& input, string msg){
 void Supermarket::invalidInput(string& input){
 
 	while (cin.fail()) {
-		cerr << "Invalid Name!\n";
+		cerr << "Invalid name! Please enter a different one: \n";
 		cin.clear();
 		cin.ignore(256, '\n');
 		getline(cin, input, '\n');

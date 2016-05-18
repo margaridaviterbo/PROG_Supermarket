@@ -16,6 +16,9 @@ using namespace std;
 
 class Supermarket{
 private:
+	string clientFile;
+	string productFile;
+	string transactionFile;
 	int lastClientAddedId;
 	int position;
 	bool clientFound;
@@ -31,6 +34,7 @@ public:
 	void readClients();
 	void readProducts();
 	void readTransactions();
+	ifstream openFile(string fileName);
 	void printClients();
 	void printProducts();
 	void printTransactions();
