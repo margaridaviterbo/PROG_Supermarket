@@ -10,7 +10,7 @@
 
 using namespace std;
 
-//TODO melhorar código e usar estruturas novas que o prof pede
+//TODO melhorar cï¿½digo e usar estruturas novas que o prof pede
 //TODO ver onde usar nClients, nProducts, nTransactions que tive de criar por causa de obrigar a por na primeira linha dos ficheiros
  
 
@@ -26,7 +26,7 @@ int main(){
 	cout << "WELCOME TO SUPERMARKET MANAGER!!!\n";
 	cout << "_________________________________\n\n";
 
-	cout << "We need to update your database begore you begin. Please enter the name of the files that contain the necessary information!\n\n";
+	cout << "We need to update your database before you begin. Please enter the name of the files that contain the necessary information!\n\n";
 	Supermarket supermarket;
 
 	Menu(supermarket);
@@ -161,7 +161,3 @@ void selectOption(int op, Supermarket &supermarket){
 		break;
 	}
 }
-
-
-
-

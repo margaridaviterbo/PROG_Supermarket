@@ -2,8 +2,6 @@
 
 using namespace std;
 
-
-
 Transaction::Transaction(int id, int clientId, Date date) {
 	this->id = id;
 	this->clientId = clientId;
@@ -47,4 +45,3 @@ bool Transaction::isEqual(int clientId){
 	else
 		return false;
 }
-

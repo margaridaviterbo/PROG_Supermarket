@@ -1,7 +1,5 @@
-
 #include"Product.h"
 #include"Supermarket.h"
-
 
 using namespace std;
 
@@ -25,5 +23,3 @@ bool Product::isEqual(string name){
 	else
 		return false;
 }
-
-

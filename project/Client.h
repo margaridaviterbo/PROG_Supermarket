@@ -25,7 +25,7 @@ public:
 	double getAmountSpent();
 	bool isEqual(int id);
 	bool isEqual(string name);
-	void updateAmoutSpent(vector<Product*> newProducts);
+	void updateAmountSpent(vector<Product *> newProducts);
 };
 
 

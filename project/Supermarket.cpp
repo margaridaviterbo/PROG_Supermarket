@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//TODO verificar se está tudo a funcionar depois de ter acrescentado numero de iteems no inicio de cada ficheiro, ver se atualiza esses numeros
+//TODO verificar se estï¿½ tudo a funcionar depois de ter acrescentado numero de iteems no inicio de cada ficheiro, ver se atualiza esses numeros
 
 Supermarket::Supermarket(){
 	cout << "Name of the clients' file (xxxxxxx.txt): ";
@@ -77,7 +77,7 @@ void Supermarket::readProducts(){
 }
 
 void Supermarket::readTransactions(){
-	int i, pos_i, pos_f;
+	int i;
 	int id;
 	int clientId;
 	string d;
@@ -548,9 +548,9 @@ void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente 
 	cout << endl << "Successful purchase." << endl;
 
 	if (op == 1)
-		clients.at(position).updateAmoutSpent(productsTransaction);
+		clients.at(position).updateAmountSpent(productsTransaction);
 	else
-		clients.back().updateAmoutSpent(productsTransaction);
+		clients.back().updateAmountSpent(productsTransaction);
 
 }		
 

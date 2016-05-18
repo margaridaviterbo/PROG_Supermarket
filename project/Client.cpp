@@ -47,7 +47,7 @@ bool Client::isEqual(string name){
 		return false;
 }
 
-void Client::updateAmoutSpent(vector<Product*> newProducts){
+void Client::updateAmountSpent(vector<Product *> newProducts){
 	for (int i = 0; i < newProducts.size(); i++)
 		amountSpent += newProducts.at(i)->getPrice();
 }
