@@ -9,6 +9,9 @@
 
 
 using namespace std;
+
+//TODO melhorar código e usar estruturas novas que o prof pede
+//TODO ver onde usar nClients, nProducts, nTransactions que tive de criar por causa de obrigar a por na primeira linha dos ficheiros
  
 
 void selectOption(int op, Supermarket &supermarket);

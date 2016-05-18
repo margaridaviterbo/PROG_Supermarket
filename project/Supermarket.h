@@ -16,6 +16,7 @@ using namespace std;
 
 class Supermarket{
 private:
+	int nClients, nProducts, nTransactions;
 	string clientFile;
 	string productFile;
 	string transactionFile;

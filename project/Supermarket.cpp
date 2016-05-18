@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//TODO verificar se está tudo a funcionar depois de ter acrescentado numero de iteems no inicio de cada ficheiro, ver se atualiza esses numeros
+
 Supermarket::Supermarket(){
 	cout << "Name of the clients' file (xxxxxxx.txt): ";
 	getline(cin, clientFile);
@@ -41,6 +43,8 @@ void Supermarket::readClients(){
 	string trash;
 	ifstream infile = openFile(clientFile);
 
+	infile >> nClients;
+
 	while (!infile.eof()){
 		infile >> id;
 		getline(infile, trash, ';');
@@ -58,6 +62,8 @@ void Supermarket::readProducts(){
 	float price;
 	string trash;
 	ifstream infile = openFile(productFile);
+
+	infile >> nProducts;
 
 	while (!infile.eof()){
 		getline(infile, name, ';');
@@ -79,6 +85,8 @@ void Supermarket::readTransactions(){
 	string productName = "";
 	string trash;
 	ifstream infile = openFile(transactionFile);
+
+	infile >> nTransactions;
 
 	while (!infile.eof()){
 		infile >> id;
@@ -398,7 +406,8 @@ void Supermarket::addClient(){
 	string date;
 	ofstream outfile;
 
-	lastClientAddedId = lastClientAddedId + 1;
+	lastClientAddedId += 1;
+	nClients += 1;
 
 	cin.ignore(1);
 
@@ -456,9 +465,11 @@ void Supermarket::deleteClient(){
 
 		cout << "\n\nClient deleted with success.";
 	}
+
+	nClients += 1;
 }
 
-void Supermarket::createTransaction(){
+void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente para atualizar amountspent depois de fazer uma compra
 	int i, op;
 	int id;
 	Date date;
@@ -526,6 +537,7 @@ void Supermarket::createTransaction(){
 	id = transactions.back().getId() + 1;
 
 	transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
+	nTransactions += 1;
 	cout << endl << "Successful purchase." << endl;
 
 	if (op == 1)
@@ -533,13 +545,15 @@ void Supermarket::createTransaction(){
 	else
 		clients.back().updateAmoutSpent(productsTransaction);
 
-}
+}		
 
 void Supermarket::save(){
 	ofstream outfile;
 	int i, j;
 
 	outfile.open(clientFile);
+
+	outfile << nClients << endl;
 
 	for (i = 0; i < clients.size(); i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent() << endl;
@@ -548,6 +562,8 @@ void Supermarket::save(){
 
 	outfile.open(productFile);
 
+	outfile << nProducts << endl;
+
 	for (i = 0; i < products.size(); i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
 	}
@@ -555,6 +571,8 @@ void Supermarket::save(){
 	outfile.close();
 
 	outfile.open(transactionFile);
+
+	outfile << nTransactions << endl;
 
 	for (i = 0; i < transactions.size(); i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
