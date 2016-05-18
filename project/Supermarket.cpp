@@ -119,13 +119,20 @@ void Supermarket::readTransactions(){
 
 ifstream Supermarket::openFile(string fileName){
 	ifstream infile;
+	int i=0;
 	infile.open(fileName);
-	while (infile.fail()){
-		cerr << "Error opening file " << fileName << ". This file might not exist. Please enter a new name for the file: ";
-		getline(cin, fileName, '\n');
-		invalidInput(fileName);
-		infile.open(fileName);
+	while (i < 3){
+		if (infile.fail()){
+			cerr << "Error opening file " << fileName << ". This file might not exist. Please enter a new name for the file (you have a maximum of 3 tries): ";
+			getline(cin, fileName, '\n');
+			invalidInput(fileName);
+			infile.open(fileName);
+			i++;
+		}
 	}
+	if (i == 3)
+		exit(1);
+
 	return infile;
 }
 
