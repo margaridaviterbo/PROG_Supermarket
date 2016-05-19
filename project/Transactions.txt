@@ -1,4 +1,4 @@
-14
+17
 1;4;23/01/2016;spaghetti sauce
 2;3;30/01/2016;coffee,spaghetti sauce
 3;4;25/03/2016;sugar,juice
@@ -13,3 +13,6 @@
 12;5;12/11/2016;dog food,chocolate cookies,beef,shaving cream,paper towels,fish
 13;7;30/11/2016;cheese,tomatos,diet cereals,yogurts
 14;5;15/07/2016;diapers,soap
+15;12;17/10/2016;batteries
+16;7;27/09/2016;ice cream
+17;13;13/12/2016;pork

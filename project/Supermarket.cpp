@@ -3,7 +3,6 @@
 using namespace std;
 
 
-//TODO VERIFICAR BUG DE DUPLICAR CLIENTES E NAO DAR PARA TRANSAÇOES GRADES
 Supermarket::Supermarket(){
 	cout << "Name of the clients' file (xxxxxxx.txt): ";
 	getline(cin, clientFile);
@@ -473,7 +472,7 @@ void Supermarket::deleteClient(){
 	nClients += 1;
 }
 
-void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente para atualizar amountspent depois de fazer uma compra
+void Supermarket::createTransaction(){		
 	int i, op;
 	int id;
 	Date date;
@@ -509,7 +508,7 @@ void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente 
 
 	printProducts();
 	cout << "Insert products to buy (separated by comma without spaces and end with period): ";
-	cin >> str_products;
+	getline(cin, str_products);
 
 	invalidInput(str_products, "Invalid input!\n");
 
@@ -530,7 +529,6 @@ void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente 
 	productName.clear();
 
 	cout << "Date of the purchase (dd/mm/yyyy): ";
-	cin.ignore(256, '\n');
 	cin >> date_str;
 	cout << endl;
 
@@ -540,16 +538,16 @@ void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente 
 
 	id = transactions.back().getId() + 1;
 
-	transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
+	if (op == 1){
+		transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
+		clients.at(position).updateAmountSpent(productsTransaction);
+	}
+	else{
+		transactions.push_back(Transaction(id, clients.back().getId(), date, productsTransaction));
+		clients.back().updateAmountSpent(productsTransaction);
+	}
 	nTransactions += 1;
 	cout << endl << "Successful purchase." << endl;
-
-	if (op == 1)
-		clients.at(position).updateAmountSpent(productsTransaction);
-	else
-		clients.back().updateAmountSpent(productsTransaction);
-
-	cout << nClients << endl << nProducts << endl << nTransactions << endl;
 }		
 
 void Supermarket::save(){
@@ -560,26 +558,27 @@ void Supermarket::save(){
 
 	outfile << nClients << endl;
 
-	for (i = 0; i < clients.size(); i++){
+	for (i = 0; i < clients.size()-1; i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent() << endl;
 	}
+	outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent();
 	outfile.close();
 
 	outfile.open(productFile);
 
 	outfile << nProducts << endl;
 
-	for (i = 0; i < products.size(); i++){
+	for (i = 0; i < products.size()-1; i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
 	}
-
+	outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice();
 	outfile.close();
 
 	outfile.open(transactionFile);
 
 	outfile << nTransactions << endl;
 
-	for (i = 0; i < transactions.size(); i++){
+	for (i = 0; i < transactions.size()-1; i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
 			<< transactions.at(i).getProducts().at(0)->getName();
 
@@ -588,6 +587,13 @@ void Supermarket::save(){
 		}
 		outfile << endl;
 	}
+	outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
+		<< transactions.at(i).getProducts().at(0)->getName();
+
+	for (j = 1; j < transactions.at(i).getProducts().size(); j++){
+		outfile << "," << transactions.at(i).getProducts().at(j)->getName();
+	}
+
 	outfile.close();
 
 	cout << "Data saved with success." << endl;
