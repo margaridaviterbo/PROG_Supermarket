@@ -25,12 +25,24 @@ Date Client::getSubscriptionDate(){
 	return subscriptionDate;
 }
 
-void Client::setName(string name){
-	this->name = name;
-}
-
 double Client::getAmountSpent(){
 	return amountSpent;
+}
+
+void Client::setId(int id) {
+	this->id = id;
+}
+
+void Client::setSubscriptionDate(const Date &subscriptionDate) {
+	this->subscriptionDate = subscriptionDate;
+}
+
+void Client::setAmountSpent(double amountSpent) {
+	this->amountSpent = amountSpent;
+}
+
+void Client::setName(string name){
+	this->name = name;
 }
 
 bool Client::isEqual(int id){
@@ -50,4 +62,11 @@ bool Client::isEqual(string name){
 void Client::updateAmountSpent(vector<Product *> newProducts){
 	for (int i = 0; i < newProducts.size(); i++)
 		amountSpent += newProducts.at(i)->getPrice();
+}
+
+bool Client::operator<(string name){
+	if (name < this->name)
+		return true;
+	else
+		return false;
 }
