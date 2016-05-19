@@ -35,50 +35,32 @@ vector<Transaction> Supermarket::getTransactions(){
 }
 
 void Supermarket::readClients(){
-	int id;
+	int i, id;
 	string name;
 	string date;
 	float amountSpent;
 	string trash;
 	ifstream infile = openFile(clientFile);
 	Client tempClient;
-	Client client;
-	bool first = true;
 
 	infile >> nClients;
 	while (!infile.eof()){
-		if(first){
-			infile >> id;
-			tempClient.setId(id);
-			getline(infile, trash, ';');
-			getline(infile, name, ';');
-			tempClient.setName(name);
-			getline(infile, date, ';');
-			tempClient.setSubscriptionDate(date);
-			infile >> amountSpent;
-			client.setAmountSpent(amountSpent);
-			first = false;
+		infile >> id;
+		getline(infile, trash, ';');
+		getline(infile, name, ';');
+		getline(infile, date, ';');
+		infile >> amountSpent;
+		clients.push_back(Client(id, name, Date(date), amountSpent));
+		i = clients.size() - 1;
+		while (i > 0 && clients.at(i) < clients.at(i - 1)){
+			tempClient = clients.at(i);
+			clients.at(i) = clients.at(i - 1);
+			clients.at(i - 1) = tempClient;
+			i--;
 		}
-		else
-			if (tempClient.getName() < client.getName()) {
-				infile >> id;
-				client.setId(id);
-				getline(infile, trash, ';');
-				getline(infile, name, ';');
-				client.setName(name);
-				getline(infile, date, ';');
-				client.setSubscriptionDate(date);
-				infile >> amountSpent;
-				client.setAmountSpent(amountSpent);
+	}
 
-				clients.push_back(tempClient);
-				tempClient = client;
-			}
-			else{
-				clients.push_back(client);
-			}
-
-		}
+	lastClientAddedId = clients.back().getId();
 }
 
 void Supermarket::readProducts(){

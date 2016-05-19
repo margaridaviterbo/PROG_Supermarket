@@ -26,10 +26,6 @@ public:
 	bool isEqual(int id);
 	bool isEqual(string name);
 	void updateAmountSpent(vector<Product *> newProducts);
-	bool operator<(string name);
-	void setId(int id);
-	void setSubscriptionDate(const Date &subscriptionDate);
-	void setAmountSpent(double amountSpent);
+	bool operator<(Client client);
 };
-
 #endif

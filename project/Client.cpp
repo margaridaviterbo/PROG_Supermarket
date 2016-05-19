@@ -29,18 +29,6 @@ double Client::getAmountSpent(){
 	return amountSpent;
 }
 
-void Client::setId(int id) {
-	this->id = id;
-}
-
-void Client::setSubscriptionDate(const Date &subscriptionDate) {
-	this->subscriptionDate = subscriptionDate;
-}
-
-void Client::setAmountSpent(double amountSpent) {
-	this->amountSpent = amountSpent;
-}
-
 void Client::setName(string name){
 	this->name = name;
 }
@@ -64,8 +52,8 @@ void Client::updateAmountSpent(vector<Product *> newProducts){
 		amountSpent += newProducts.at(i)->getPrice();
 }
 
-bool Client::operator<(string name){
-	if (name < this->name)
+bool Client::operator<(Client client){
+	if (name < client.name)
 		return true;
 	else
 		return false;
