@@ -118,7 +118,10 @@ void Supermarket::readTransactions(){
 		}
 		strProducts = "";
 		productName = "";
-
+		for (int i = 0; i < clients.size(); i++){
+			if (clients.at(i).isEqual(clientId))
+				clients.at(i).addTransaction(transactions.back());
+		}
 	}
 	infile.close();
 }
@@ -327,17 +330,10 @@ void Supermarket::searchTransaction(){
 	transactionFound = false;
 
 	if (op == 1){
-		cout << "Client ID: ";
-		cin >> id;
-		cout << endl;
-
-		invalidInput(id, "Invalid id!\n");
-
-		for (i = 0; i < transactions.size(); i++){
-			if (transactions.at(i).isEqual(id)){
-				printSelectedTransaction(i);
-			}
-		}
+		searchClient();
+		cout << endl << endl << "Transactions:" << endl << endl;
+		if (clients.at(position).printTransactions())
+			transactionFound = true;
 		cout << endl;
 	}
 	else if (op == 2){
@@ -549,10 +545,12 @@ void Supermarket::createTransaction(){
 	if (op == 1){
 		transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
 		clients.at(position).updateAmountSpent(productsTransaction);
+		clients.at(position).addTransaction(transactions.back());
 	}
 	else{
 		transactions.push_back(Transaction(id, clients.back().getId(), date, productsTransaction));
 		clients.back().updateAmountSpent(productsTransaction);
+		clients.back().addTransaction(transactions.back());
 	}
 	nTransactions += 1;
 	cout << endl << "Successful purchase." << endl;

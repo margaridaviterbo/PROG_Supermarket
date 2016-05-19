@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Transaction::Transaction(){
+
+}
+
 Transaction::Transaction(int id, int clientId, Date date) {
 	this->id = id;
 	this->clientId = clientId;
