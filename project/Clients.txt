@@ -1,4 +1,4 @@
-11
+13
 1;Beatriz Sousa Coelho;17/05/2016;44.85
 2;Margarida Viterbo;17/05/2016;15.15
 3;Diogo Coelho Tomas Simoes;30/01/2016;17.8
@@ -10,3 +10,5 @@
 9;Maria Joao Santos Tavares;05/05/2016;15.75
 10;Pedro Jose Lourenco Azevedo;11/08/2016;5.1
 11;Maria Sousa;13/05/2016;0
+12;Maria Francisca Azevedo Pauperio;18/05/2016;0
+13;Ines Teixeira;12/04/2015;0

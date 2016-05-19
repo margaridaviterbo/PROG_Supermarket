@@ -38,7 +38,7 @@ int main(){
 void Menu(Supermarket &supermarket){
 	int op;
 	cout << "0 - Exit\n\n";
-	cout << "1 - Cients List\n";
+	cout << "1 - Clients List\n";
 	cout << "2 - Products List\n";
 	cout << "3 - Transactions List\n" << endl;
 	cout << "___________________________________\n" << endl;

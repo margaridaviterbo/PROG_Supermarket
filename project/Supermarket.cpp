@@ -2,8 +2,8 @@
 
 using namespace std;
 
-//TODO verificar se est� tudo a funcionar depois de ter acrescentado numero de iteems no inicio de cada ficheiro, ver se atualiza esses numeros
 
+//TODO VERIFICAR BUG DE DUPLICAR CLIENTES E NAO DAR PARA TRANSAÇOES GRADES
 Supermarket::Supermarket(){
 	cout << "Name of the clients' file (xxxxxxx.txt): ";
 	getline(cin, clientFile);
@@ -549,6 +549,7 @@ void Supermarket::createTransaction(){		//TODO corrigir bug de duplicar cliente 
 	else
 		clients.back().updateAmountSpent(productsTransaction);
 
+	cout << nClients << endl << nProducts << endl << nTransactions << endl;
 }		
 
 void Supermarket::save(){
