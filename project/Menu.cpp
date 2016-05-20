@@ -51,9 +51,9 @@ void Menu(Supermarket &supermarket){
 	cout << "8 - Delete Client\n" << endl;
 	cout << "___________________________________\n" << endl;
 	cout << "9 - Create transaction\n";
-	cout << "10- Bottom ten clients\n";
-	cout << "11- Recomendation System\n";
-	cout << "12- Save\n\n";
+	cout << "10 - Bottom ten clients\n";
+	cout << "11 - Recomendation System\n";
+	cout << "12 - Save\n\n";
 	cout << "Please choose an option:\n";
 	cin >> op;
 	cout << endl;
