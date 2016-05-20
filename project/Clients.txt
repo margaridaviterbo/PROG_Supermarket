@@ -1,18 +1,13 @@
-13
+12
 1;Beatriz Sousa Coelho;17/05/2016;44.85
-2;Margarida Viterbo;17/05/2016;15.15
+12;Catarina Nunes;17/10/2016;35.5
 3;Diogo Coelho Tomas Simoes;30/01/2016;17.8
 4;Filipa Corte-Real Farinha Beirao;23/01/2016;8.75
 5;Joao Vicente Marques Pinheiro-Torres;31/06/2016;30.05
 6;Manuel Augusto Bernardo Marques;04/06/2016;18.65
 7;Marco Pinheiro;30/11/2016;10.6
+2;Margarida Viterbo;17/05/2016;15.15
 8;Maria Ines Tavares Silva;13/06/2016;12.15
-10;Pedro Jose Lourenco Azevedo;11/08/2016;5.1
 11;Maria Sousa;13/05/2016;0
-<<<<<<< HEAD
-12;Catarina Nunes;17/10/2016;35.5
-13;Ana Brandao Mota;23/02/2016;1.1
-=======
-12;Maria Francisca Azevedo Pauperio;18/05/2016;0
-13;Ines Teixeira;12/04/2015;0
->>>>>>> 2ce9e051b97a8ea95cde5837deea3d8ff8befe56
+10;Pedro Jose Lourenco Azevedo;11/08/2016;5.1
+13;Joao Chaves;05/05/2016;0

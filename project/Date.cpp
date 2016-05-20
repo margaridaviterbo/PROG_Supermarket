@@ -54,15 +54,18 @@ bool Date::operator==(string date){
 		return false;
 }
 
-bool Date::operator<=(Date date){
+bool Date::operator<=(Date date) {
 
 	if (year < date.year)
 		return true;
-	else if (year == date.year) 
+	else if (year == date.year) {
 		if (month < date.month)
 			return true;
 		else if ((month == date.month) && (day <= date.day))
-		return true;
+			return true;
+		else
+			return false;
+	}
 	else
 		return false;
 }
@@ -70,11 +73,14 @@ bool Date::operator<=(Date date){
 bool Date::operator>=(Date date){
 	if (year > date.year)
 		return true;
-	else if (year == date.year)
+	else if (year == date.year) {
 		if (month > date.month)
 			return true;
 		else if ((month == date.month) && (day >= date.day))
 			return true;
 		else
 			return false;
+	}
+	else
+		return false;
 }

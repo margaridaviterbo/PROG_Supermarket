@@ -11,3 +11,7 @@ RecomendationSystem::RecomendationSystem(Supermarket &supermarket, Client target
             matrix.at(i).at(j) = false;
     }
 }
+
+void RecomendationSystem::personalizedAdvertising(){
+
+}

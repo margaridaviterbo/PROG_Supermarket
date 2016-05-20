@@ -13,7 +13,7 @@ private:
     Client targetClient;
     vector<vector<bool>> matrix;
 public:
-    RecomendationSystem(Supermarket &supermarket, Client targetClient);
+    RecomendationSystem(Supermarket& supermarket, Client targetClient);
     void personalizedAdvertising();
 };
 

@@ -77,7 +77,7 @@ void endMenu(Supermarket &supermarket){
 	cin >> op;
 	cout << endl;
 
-	while (cin.fail() || (op!=0 && op!=13)) {	
+	while (cin.fail() || (op!=0 && op!=13)) {
 		cout << "Invalid input! Please enter a number from the menu.\n";
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -152,7 +152,7 @@ void selectOption(int op, Supermarket &supermarket){
 		break;
 	case RECOMENDATION_SYSTEM:
 		space();
-//		supermarket.runRecomendationSystem();
+		//supermarket.runRecomendationSystem();
 		endMenu(supermarket);
 		break;
 	case SAVE:

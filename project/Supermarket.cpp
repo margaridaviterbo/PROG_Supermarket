@@ -19,6 +19,7 @@ Supermarket::Supermarket(){
 	invalidInput(transactionFile);
 	readTransactions();
 
+	//Falta inicializar o resto dos atributos!
 	cout << endl << endl;
 }
 
@@ -52,7 +53,7 @@ void Supermarket::readClients(){
 		infile >> amountSpent;
 		clients.push_back(Client(id, name, Date(date), amountSpent));
 		i = clients.size() - 1;
-		while (i > 0 && clients.at(i) < clients.at(i - 1)){
+		while (i > 0 && clients.at(i) < clients.at(i - 1)) {
 			tempClient = clients.at(i);
 			clients.at(i) = clients.at(i - 1);
 			clients.at(i - 1) = tempClient;
@@ -130,11 +131,12 @@ ifstream Supermarket::openFile(string fileName){
 	ifstream infile;
 	int i=0;
 	infile.open(fileName);
-	while ((i < 3) && (infile.fail())){
-			cerr << "Error opening file " << fileName << ". This file might not exist. Please enter a new name for the file (you have a maximum of 3 tries): ";
-			getline(cin, fileName, '\n');
-			invalidInput(fileName);
-			infile.open(fileName);
+	while ((i < 3) && (infile.fail())) {
+		cerr << "Error opening file " << fileName <<
+		". This file might not exist. Please enter a new name for the file (you have a maximum of 3 tries): ";
+		getline(cin, fileName, '\n');
+		invalidInput(fileName);
+		infile.open(fileName);
 		i++;
 	}
 
@@ -411,12 +413,24 @@ void Supermarket::printSelectedTransaction(int i){
 	transactionFound = true;
 }
 
+int Supermarket::getMaxId(){
+	vector<int> ids;
+	for (int i = 0; i < clients.size(); i++){
+		ids.push_back(clients.at(i).getId());
+	}
+
+	sort(ids.begin(), ids.end());
+
+	return ids.at(ids.size()-1);
+}
+
 void Supermarket::addClient(){
 	string name;
 	string date;
 	ofstream outfile;
 
 	lastClientAddedId += 1;
+
 	nClients += 1;
 
 	cin.ignore(1);
@@ -435,7 +449,7 @@ void Supermarket::addClient(){
 
 	cin.clear();
 
-	clients.push_back(Client(lastClientAddedId, name, Date(date), 0));
+	clients.push_back(Client(getMaxId()+1, name, Date(date), 0));
 	cout << "Client added with success.\n\n";
 
 }
@@ -663,13 +677,11 @@ void Supermarket::invalidInput(string& input, string msg){
 
 void Supermarket::invalidInput(string& input){
 
-	while (cin.fail()) {
+	while(cin.fail()) {
 		cerr << "Invalid name! Please enter a different one: \n";
 		cin.clear();
 		cin.ignore(256, '\n');
 		getline(cin, input, '\n');
 		cout << endl;
-
 	}
-
 }

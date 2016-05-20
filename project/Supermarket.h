@@ -7,11 +7,11 @@
 #include<iomanip>
 #include <stdio.h>
 #include <time.h>
+#include<algorithm>
 #include"Client.h"
 #include"Product.h"
 #include"Transaction.h"
 #include"Date.h"
-#include"RecomendationSystem.h"
 
 using namespace std;
 
@@ -54,7 +54,7 @@ public:
 	void invalidInput(int& input, string msg);
 	void invalidInput(string& input, string msg);
 	void invalidInput(string& input);
-
+	int getMaxId();
 };
 
 
