@@ -301,7 +301,10 @@ void Supermarket::searchClient(){
 }
 
 void Supermarket::printSelectedClient(int i){
-	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << clients.at(i).getName() << "\tSubscription Date: " << clients.at(i).getSubscriptionDate().getDate() << "\t\tAmount Spent: " << clients.at(i).getAmountSpent();
+	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << 
+					clients.at(i).getName() << "\tSubscription Date: " << 
+					clients.at(i).getSubscriptionDate().getDate() << "\t\tAmount Spent: " << 
+					clients.at(i).getAmountSpent();
 	position = i;
 	clientFound = true;
 }
@@ -555,6 +558,36 @@ void Supermarket::createTransaction(){
 	nTransactions += 1;
 	cout << endl << "Successful purchase." << endl;
 }		
+
+void Supermarket::bottomTen(){
+	int i, j;
+	Client* tempClient;
+	vector<Client*> clientsByOrder;
+
+	for ( i = 0; i < clients.size();i++){
+		clientsByOrder.push_back(&clients.at(i));
+		j = clientsByOrder.size() - 1;
+		while (j > 0 && (clientsByOrder.at(j)->getAmountSpent() < clientsByOrder.at(j-1)->getAmountSpent())){
+			tempClient = clientsByOrder.at(j);
+			clientsByOrder.at(j) = clientsByOrder.at(j-1);
+			clientsByOrder.at(j-1) = tempClient;
+			j--;
+		}
+	}
+	int pos = clientsByOrder.size();
+	while (pos > 10){
+		clientsByOrder.erase(clientsByOrder.begin() + (pos - 1));
+		pos -- ;
+	}
+
+	cout << endl << endl;
+	for (i = 0; i < clientsByOrder.size(); i++){
+		cout << i + 1 << "o:\t" << "ID: " << setw(10) << clientsByOrder.at(i)->getId() << setw(10) << "Name: " << setw(10) <<
+			clientsByOrder.at(i)->getName() << setw(40) << "\tSubscription Date: " << setw(10) <<
+			clientsByOrder.at(i)->getSubscriptionDate().getDate() << setw(20) << "Amount Spent: " <<
+			clientsByOrder.at(i)->getAmountSpent() << endl;
+	}
+}
 
 void Supermarket::save(){
 	ofstream outfile;

@@ -47,6 +47,7 @@ public:
 	void editClient();
 	void deleteClient();
 	void createTransaction();
+	void bottomTen();
 	void save();
 	Product* getProduct(string productName);
 	void invalidInput(int& input, string msg);
