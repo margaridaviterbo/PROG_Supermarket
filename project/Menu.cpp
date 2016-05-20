@@ -71,9 +71,9 @@ void Menu(Supermarket &supermarket){
 void endMenu(Supermarket &supermarket){
 	int op;
 	cout << "\n\n";
-	cout << "Choose an option:\n\n";
 	cout << "0 - Exit\n";
-	cout << "13 - Return to Menu\n";
+	cout << "13 - Return to Menu\n\n";
+	cout << "Choose an option:\n";
 	cin >> op;
 	cout << endl;
 
