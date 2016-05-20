@@ -6,6 +6,7 @@
 #include"Client.h"
 #include"Product.h"
 #include"Transaction.h"
+#include"RecomendationSystem.h"
 
 
 using namespace std;

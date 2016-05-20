@@ -11,6 +11,7 @@
 #include"Product.h"
 #include"Transaction.h"
 #include"Date.h"
+#include"RecomendationSystem.h"
 
 using namespace std;
 
