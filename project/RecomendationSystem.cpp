@@ -2,7 +2,7 @@
 
 using namespace std;
 
-RecomendationSystem::RecomendationSystem(Supermarket supermarket, Client targetClient){
+RecomendationSystem::RecomendationSystem(Supermarket &supermarket, Client targetClient){
 	this->supermarket = supermarket;
 	this->targetClient = targetClient;
 
