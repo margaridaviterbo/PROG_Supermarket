@@ -23,6 +23,10 @@ Supermarket::Supermarket(){
 	cout << endl << endl;
 }
 
+int Supermarket::getPosition(){
+	return position;
+}
+
 vector<Client> Supermarket::getClients(){
 	return clients;
 }
@@ -148,11 +152,13 @@ ifstream Supermarket::openFile(string fileName){
 Product* Supermarket::getProduct(string productName){
 	int i = 0;
 	while (i < products.size()){
-		if (products.at(i)->isEqual(productName))
+		if (products.at(i)->isEqual(productName)){
+			position = i;
 			return products.at(i);
-		i++;
+			i++;
+		}
+		return NULL;
 	}
-	return NULL;
 }
 
 void Supermarket::printClients(){

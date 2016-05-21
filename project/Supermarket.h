@@ -30,6 +30,7 @@ private:
 	vector<Transaction> transactions;
 public:
 	Supermarket();
+	int getPosition();
 	vector<Client> getClients();
 	vector<Product*> getProducts();
 	vector<Transaction> getTransactions();
