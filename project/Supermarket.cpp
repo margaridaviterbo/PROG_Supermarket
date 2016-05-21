@@ -579,7 +579,7 @@ void Supermarket::createTransaction(){
 	cout << endl << "Successful purchase." << endl;
 }		
 
-void Supermarket::bottomTen(){
+vector<Client*> Supermarket::bottomTen(){
 	int i, j;
 	Client* tempClient;
 	vector<Client*> clientsByOrder;
@@ -607,22 +607,47 @@ void Supermarket::bottomTen(){
 			clientsByOrder.at(i)->getSubscriptionDate().getDate() << setw(20) << "Amount Spent: " <<
 			clientsByOrder.at(i)->getAmountSpent() << endl;
 	}
+	return clientsByOrder;
 }
 
 void Supermarket::runRecomendationSystem(){
+	int op;
 
-	cout << "This system will suggest a product that we think the client you choose would interested in.\nPlease select a client.\n\n";
-	searchClient();
+	cout << "This system will suggest a product that we think the client(s) you choose would interested in.\n";
+	cout << "Please choose an option.\n\n";
+	cout << "1 - Select a client\n";
+	cout << "2 - Use recomendation system with bottom 10 clients\n\n";
+	cin >> op;
+	cout << endl;
 
-	RecomendationSystem clientPersnalizedAdvertising(*this, clients.at(position));
-	if (clientPersnalizedAdvertising.personalizedAdvertising() == NULL)
+	while (cin.fail() || (op != 1 && op != 2)) {
+		cerr << "Invalid input! Please enter a number from the menu.\n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> op;
+		cout << endl;
+	}
+
+	if (op == 1){
+		searchClient();
+		cout << endl << endl;
+		callPersonalizedAdvertising(&clients.at(position));
+	}
+	else
+		for (int i = 0; i < bottomTen().size(); i++)
+			callPersonalizedAdvertising(bottomTen().at(i));
+}
+
+	void Supermarket::callPersonalizedAdvertising(Client* client){
+
+	RecomendationSystem clientSelected(this, client);
+	if (clientSelected.personalizedAdvertising() == NULL)
 		cout << "We couldn't find a suitable product for you.\n\n";
 	else
-		cout << "We suggest you this product: \n"
-		cout << setw(30) << clientPersnalizedAdvertising(*this, clients.at(position))->getName() <<
+		cout << "We suggest you this product: \n";
+		cout << setw(30) << clientSelected.personalizedAdvertising->getName() <<
 		setw(15) << "|" <<
-		setw(20) << clientPersnalizedAdvertising(*this, clients.at(position))->getPrice() << '\n';
-
+		setw(20) << clientSelected.personalizedAdvertising->getPrice() << endl;
 }
 
 void Supermarket::save(){

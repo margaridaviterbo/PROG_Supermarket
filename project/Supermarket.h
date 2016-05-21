@@ -50,8 +50,9 @@ public:
 	void editClient();
 	void deleteClient();
 	void createTransaction();
-	void bottomTen();
+	vector<Client*> bottomTen();
 	void runRecomendationSystem();
+	void callPersonalizedAdvertising(Client* client);
 	void save();
 	Product* getProduct(string productName);
 	void invalidInput(int& input, string msg);

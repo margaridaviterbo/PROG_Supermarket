@@ -2,14 +2,14 @@
 
 using namespace std;
 
-RecomendationSystem::RecomendationSystem(Supermarket &supermarket, Client targetClient){
-	targetClientID = targetClient.getId();
+RecomendationSystem::RecomendationSystem(Supermarket* supermarket, Client* targetClient){
+	targetClientID = targetClient->getId();
 
 	this->supermarket = supermarket;
 	this->targetClient = targetClient;
 
-	for (int i = 0; i < supermarket.getClients().size(); i++){
-		for (int j = 0; j < supermarket.getProducts().size(); j++){
+	for (int i = 0; i < supermarket->getClients().size(); i++){
+		for (int j = 0; j < supermarket->getProducts().size(); j++){
 			matches.push_back(make_pair(0, j));
 			mismatches.push_back(0);
 			matrix.at(i).at(j) = false;
@@ -22,13 +22,13 @@ RecomendationSystem::RecomendationSystem(Supermarket &supermarket, Client target
 Product* RecomendationSystem::personalizedAdvertising(){
 	int i, j;
 	int clientID;
-	for (i = 0; i < supermarket.getTransactions().size(); i++){
-		clientID = supermarket.getTransactions().at(i).getClientId();
-		for (j = 0; j < supermarket.getTransactions().at(i).getProducts().size(); j++){
-			if (supermarket.getProduct(supermarket.getTransactions().at(i).getProducts().at(j)->getName()) != NULL){
-				matrix.at(clientID).at(supermarket.getPosition()) = true;
+	for (i = 0; i < supermarket->getTransactions().size(); i++){
+		clientID = supermarket->getTransactions().at(i).getClientId();
+		for (j = 0; j < supermarket->getTransactions().at(i).getProducts().size(); j++){
+			if (supermarket->getProduct(supermarket->getTransactions().at(i).getProducts().at(j)->getName()) != NULL){
+				matrix.at(clientID).at(supermarket->getPosition()) = true;
 				if (clientID == targetClientID)
-					targetClientProducts.at(supermarket.getPosition()) = true;
+					targetClientProducts.at(supermarket->getPosition()) = true;
 			}
 		}
 	}
@@ -72,13 +72,13 @@ Product* RecomendationSystem::personalizedAdvertising(){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (matrix.at(idSelectedClients.at(i)).at(j) == true && targetClientProducts.at(j) == false){
 				for (k = 0; k < selectedProducts.size(); k++){
-					if (selectedProducts.at(k).second->getName() == supermarket.getProducts().at(j)->getName())
+					if (selectedProducts.at(k).second->getName() == supermarket->getProducts().at(j)->getName())
 						found = true;
 				}
 				if (found == true)
 					selectedProducts.at(k).first++;
 				else{
-					selectedProducts.push_back(make_pair(1, supermarket.getProducts().at(j)));
+					selectedProducts.push_back(make_pair(1, supermarket->getProducts().at(j)));
 				}
 			}
 		}
