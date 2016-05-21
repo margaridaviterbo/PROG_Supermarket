@@ -152,7 +152,7 @@ void selectOption(int op, Supermarket &supermarket){
 		break;
 	case RECOMENDATION_SYSTEM:
 		space();
-		//supermarket.runRecomendationSystem();
+		supermarket.runRecomendationSystem();
 		endMenu(supermarket);
 		break;
 	case SAVE:

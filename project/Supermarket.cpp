@@ -609,6 +609,22 @@ void Supermarket::bottomTen(){
 	}
 }
 
+void Supermarket::runRecomendationSystem(){
+
+	cout << "This system will suggest a product that we think the client you choose would interested in.\nPlease select a client.\n\n";
+	searchClient();
+
+	RecomendationSystem clientPersnalizedAdvertising(*this, clients.at(position));
+	if (clientPersnalizedAdvertising.personalizedAdvertising() == NULL)
+		cout << "We couldn't find a suitable product for you.\n\n";
+	else
+		cout << "We suggest you this product: \n"
+		cout << setw(30) << clientPersnalizedAdvertising(*this, clients.at(position))->getName() <<
+		setw(15) << "|" <<
+		setw(20) << clientPersnalizedAdvertising(*this, clients.at(position))->getPrice() << '\n';
+
+}
+
 void Supermarket::save(){
 	ofstream outfile;
 	int i, j;

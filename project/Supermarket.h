@@ -12,6 +12,7 @@
 #include"Product.h"
 #include"Transaction.h"
 #include"Date.h"
+#include"RecomendationSystem.h"
 
 using namespace std;
 
@@ -50,6 +51,7 @@ public:
 	void deleteClient();
 	void createTransaction();
 	void bottomTen();
+	void runRecomendationSystem();
 	void save();
 	Product* getProduct(string productName);
 	void invalidInput(int& input, string msg);
