@@ -344,11 +344,14 @@ void Supermarket::searchTransaction(){
 	transactionFound = false;
 
 	if (op == 1){
-		searchClient();
-		cout << endl << endl << "Transactions:" << endl << endl;
-		if (clients.at(position).printTransactions())
-			transactionFound = true;
-		cout << endl;
+		if (searchClient()){
+			if (clients.at(position).getTransactions().size() != 0){
+				cout << endl << endl << "Transactions:" << endl << endl;
+				clients.at(position).printTransactions();
+				transactionFound = true;
+			}
+			cout << endl;
+		}
 	}
 	else if (op == 2){
 		cout << "Search transactions in date (dd/mm/yyyy): ";
@@ -437,6 +440,7 @@ void Supermarket::addClient(){
 	string name;
 	string date;
 	ofstream outfile;
+	Client tempClient;
 
 	//lastClientAddedId += 1;
 
@@ -459,6 +463,13 @@ void Supermarket::addClient(){
 	cin.clear();
 
 	clients.push_back(Client(getMaxId() + 1, name, Date(date), 0));
+	int i = clients.size() - 1;
+	while (i > 0 && clients.at(i) < clients.at(i - 1)) {
+		tempClient = clients.at(i);
+		clients.at(i) = clients.at(i - 1);
+		clients.at(i - 1) = tempClient;
+		i--;
+	}
 	cout << "\nClient added with success.\n\n";
 
 }
@@ -531,22 +542,15 @@ void Supermarket::createTransaction(){
 		while (clientFound == false)
 			searchClient();
 	}
-	cout << position;
 
 	if (op == 2){
 		addClient();
 	}
 
-	cout << endl << position;
-
 	printProducts();
-
-	cout << endl << position;
 
 	cout << "Insert products to buy (separated by comma without spaces and end with period): ";
 	getline(cin, str_products);
-
-	cout << endl << position;
 
 	invalidInput(str_products, "Invalid input!\n");
 
@@ -566,8 +570,6 @@ void Supermarket::createTransaction(){
 	str_products.clear();
 	productName.clear();
 
-	cout << endl << position;
-
 	cout << "Date of the purchase (dd/mm/yyyy): ";
 	cin >> date_str;
 	cout << endl;
@@ -577,8 +579,6 @@ void Supermarket::createTransaction(){
 	date = Date(date_str);
 
 	id = transactions.back().getId() + 1;
-
-	cout << endl << position;
 
 	if (op == 1){
 		transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
