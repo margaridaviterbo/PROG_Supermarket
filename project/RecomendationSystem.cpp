@@ -39,9 +39,9 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	for (i = 0; i < matrix.size(); i++){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (targetClientProducts.at(j) == true && matrix.at(i).at(j) == true)
-				matches.at(j).first++;
+				matches.at(i).first++;
 			else if (targetClientProducts.at(j) == false && matrix.at(i).at(j) == true)
-				mismatches.at(j)++;
+				mismatches.at(i)++;
 		}
 	}
 
@@ -58,7 +58,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	idSelectedClients.push_back(matches.at(0).second);
 
 	i = 0;
-	while (mismatches.at(matches.at(i).second) == 0){
+	while (mismatches.at(matches.at(i).first) == 0 && i<matches.size()){
 		idSelectedClients.back() = matches.at(i).second;
 		i++;
 	}
