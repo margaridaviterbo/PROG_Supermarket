@@ -8,7 +8,8 @@ RecomendationSystem::RecomendationSystem(Supermarket* supermarket, Client* targe
 	this->supermarket = supermarket;
 	this->targetClient = targetClient;
 
-	for (int i = 0; i < supermarket->getMaxId(); i++){
+	matrix.push_back(vector<bool>());
+	for (int i = 1; i <= supermarket->getMaxId(); i++){
 		matrix.push_back(vector<bool>());
 		for (int j = 0; j < supermarket->getProducts().size(); j++){
 			matches.push_back(make_pair(0, j));
@@ -35,7 +36,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	}
 
 
-	for (i = 0; i < matrix.size(); i++){
+	for (i = 1; i <= matrix.size(); i++){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (targetClientProducts.at(j) == true && matrix.at(i).at(j) == true)
 				matches.at(i).first++;
@@ -45,7 +46,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	}
 
 	bool found = false;
-	for (i = 0; i < matches.size(); i++){
+	for (i = 1; i <= matches.size(); i++){
 		if (matches.at(i).first != 0)
 			found = true;
 	}
@@ -54,21 +55,21 @@ Product* RecomendationSystem::personalizedAdvertising(){
 
 	sort(matches.begin(), matches.end());
 	reverse(matches.begin(), matches.end());
-	idSelectedClients.push_back(matches.at(0).second);
+	idSelectedClients.push_back(matches.at(1).second);
 
-	i = 0;
-	while (mismatches.at(matches.at(i).first) == 0 && i<matches.size()){
+	i = 1;
+	while (mismatches.at(matches.at(i).first) == 0 && i<=matches.size()){
 		idSelectedClients.back() = matches.at(i).second;
 		i++;
 	}
-	while (matches.at(i + 1).first == matches.at(i).first && i<matches.size()-1){
+	while (matches.at(i + 1).first == matches.at(i).first && i<=matches.size()-1){
 		idSelectedClients.push_back(matches.at(i + 1).second);
 		i++;
 	}
 
 	found = false;
 	int k;
-	for (i = 0; i < idSelectedClients.size(); i++){
+	for (i = 1; i <= idSelectedClients.size(); i++){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (matrix.at(idSelectedClients.at(i)).at(j) == true && targetClientProducts.at(j) == false){
 				for (k = 0; k < selectedProducts.size(); k++){
