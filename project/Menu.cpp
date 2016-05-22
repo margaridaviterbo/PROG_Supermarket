@@ -1,3 +1,9 @@
+/*
+This source file is where the program starts, so it's where the main() funtion is.
+*/
+
+
+
 #include<iostream>
 #include<string>
 #include<vector>
@@ -11,14 +17,10 @@
 
 using namespace std;
 
-//TODO melhorar c�digo e usar estruturas novas que o prof pede
-//TODO ver onde usar nClients, nProducts, nTransactions que tive de criar por causa de obrigar a por na primeira linha dos ficheiros
- 
-
-void selectOption(int op, Supermarket &supermarket);
-void Menu(Supermarket &supermarket);
-void endMenu(Supermarket &supermarket);
-void space();
+void selectOption(int op, Supermarket &supermarket);	//method that calls the functions that implent the option from the menu selected by the user
+void Menu(Supermarket &supermarket);					//Main menu
+void endMenu(Supermarket &supermarket);					//Menu that appears after executing the function called by the option chosen from the main menu by the user
+void space();											//Function that "cleans" the screen after executing the function called by the option chosen from the main menu by the user
 
 enum option { EXIT, CLIENTS, PRODUCTS, TRANSACTIONS, SEARCH_CLIENT, SEARCH_TRANSACTION, ADD_CLIENT, EDIT_CLIENT, DELETE_CLIENT, CREATE_TRANSACTION, BOTTOM_10, RECOMENDATION_SYSTEM, SAVE, MENU };
 

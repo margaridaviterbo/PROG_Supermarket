@@ -1,3 +1,7 @@
+/*
+this class simulates a supermarket and contains all the funtions called by the menu in main()
+*/
+
 #ifndef SUPERMARKET_H
 #define SUPERMARKET_H
 #include<iostream>

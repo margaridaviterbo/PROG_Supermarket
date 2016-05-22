@@ -1,3 +1,8 @@
+/*
+Class that simulates a client.
+*/
+
+
 #ifndef CLIENT_H
 #define CLIENT_H
 #include<iostream>
@@ -12,25 +17,25 @@ using namespace std;
 class Client{
 
 private:
-	int id;
-	string name;
-	Date subscriptionDate;
-	double amountSpent;
-	vector<Transaction> transactions;
+	int id;								//Client id
+	string name;						//Client Name
+	Date subscriptionDate;				//Client subscription date
+	double amountSpent;					//Total amount spent by the client in all the transactions made
+	vector<Transaction> transactions;	//transactions made by the client
 public:
-	Client();
-	Client(int id, string name, Date subscriptionDate, double amountSpent);
-	int getId();
-	string getName();
-	Date getSubscriptionDate();
-	void setName(string name);
-	double getAmountSpent();
-	vector<Transaction> getTransactions();
-	bool isEqual(int id);
-	bool isEqual(string name);
-	void updateAmountSpent(vector<Product *> newProducts);
-	void addTransaction(Transaction transaction);
-	bool printTransactions();
-	bool operator<(Client client);
+	Client();																//empty constructor
+	Client(int id, string name, Date subscriptionDate, double amountSpent);	//constructor
+	int getId();															//return the client id
+	string getName();														//returns the client name
+	Date getSubscriptionDate();												//returns the client subscription date
+	void setName(string name);												//changes the atribute name
+	double getAmountSpent();												//returns the client total amount spent
+	vector<Transaction> getTransactions();									//returns the clients transactions
+	bool isEqual(int id);													//compares clients by id
+	bool isEqual(string name);												//compares clients by name
+	void updateAmountSpent(vector<Product *> newProducts);					//adds the amount of a new transactions of the client to the total amount spent by the client
+	void addTransaction(Transaction transaction);							//adds a new transaction to the vector transactions of the client
+	bool printTransactions();												//prints the client transactions
+	bool operator<(Client client);											//compares names of the clients 
 };
 #endif

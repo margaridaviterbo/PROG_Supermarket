@@ -1,3 +1,7 @@
+/*
+this class simulates the recomendation system
+*/
+
 #ifndef PROG_SUPERMARKET_RECOMENDATIONSYSTEM_H
 #define PROG_SUPERMARKET_RECOMENDATIONSYSTEM_H
 
