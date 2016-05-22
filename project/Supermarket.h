@@ -12,7 +12,6 @@
 #include"Product.h"
 #include"Transaction.h"
 #include"Date.h"
-#include"RecomendationSystem.h"
 
 using namespace std;
 
@@ -22,7 +21,7 @@ private:
 	string clientFile;
 	string productFile;
 	string transactionFile;
-	int lastClientAddedId;
+	/*int lastClientAddedId;*/
 	int position;
 	bool clientFound;
 	bool transactionFound;
@@ -32,9 +31,9 @@ private:
 public:
 	Supermarket();
 	int getPosition();
-	vector<Client> getClients();
-	vector<Product*> getProducts();
-	vector<Transaction> getTransactions();
+	vector<Client>& getClients();
+	vector<Product*>& getProducts();
+	vector<Transaction>& getTransactions();
 	void readClients();
 	void readProducts();
 	void readTransactions();

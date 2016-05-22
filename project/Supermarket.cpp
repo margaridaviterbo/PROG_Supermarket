@@ -1,4 +1,5 @@
 #include"Supermarket.h"
+#include"RecomendationSystem.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ Supermarket::Supermarket(){
 	invalidInput(productFile);
 	readProducts();
 
-	cout << "\n\nName od the transactions' file (xxxxxxx.txt): ";
+	cout << "\n\nName of the transactions' file (xxxxxxx.txt): ";
 	getline(cin, transactionFile);
 	invalidInput(transactionFile);
 	readTransactions();
@@ -27,15 +28,15 @@ int Supermarket::getPosition(){
 	return position;
 }
 
-vector<Client> Supermarket::getClients(){
+vector<Client>& Supermarket::getClients(){
 	return clients;
 }
 
-vector<Product*> Supermarket::getProducts(){
+vector<Product*>& Supermarket::getProducts(){
 	return products;
 }
 
-vector<Transaction> Supermarket::getTransactions(){
+vector<Transaction>& Supermarket::getTransactions(){
 	return transactions;
 }
 
@@ -65,7 +66,7 @@ void Supermarket::readClients(){
 		}
 	}
 
-	lastClientAddedId = clients.back().getId();
+	//lastClientAddedId = clients.back().getId();
 }
 
 void Supermarket::readProducts(){
@@ -133,11 +134,11 @@ void Supermarket::readTransactions(){
 
 ifstream Supermarket::openFile(string fileName){
 	ifstream infile;
-	int i=0;
+	int i = 0;
 	infile.open(fileName);
 	while ((i < 3) && (infile.fail())) {
 		cerr << "Error opening file " << fileName <<
-		". This file might not exist. Please enter a new name for the file (you have a maximum of 3 tries): ";
+			". This file might not exist. Please enter a new name for the file (you have a maximum of 3 tries): ";
 		getline(cin, fileName, '\n');
 		invalidInput(fileName);
 		infile.open(fileName);
@@ -155,10 +156,10 @@ Product* Supermarket::getProduct(string productName){
 		if (products.at(i)->isEqual(productName)){
 			position = i;
 			return products.at(i);
-			i++;
 		}
-		return NULL;
+		i++;
 	}
+	return NULL;
 }
 
 void Supermarket::printClients(){
@@ -305,14 +306,14 @@ void Supermarket::searchClient(){
 	if (clientFound == false)
 		cout << "Client not found.";
 
-	return;
+	/*return;*/
 }
 
 void Supermarket::printSelectedClient(int i){
-	cout << "ID: " << clients.at(i).getId() << "\t\tName: " << 
-					clients.at(i).getName() << "\tSubscription Date: " << 
-					clients.at(i).getSubscriptionDate().getDate() << "\t\tAmount Spent: " << 
-					clients.at(i).getAmountSpent();
+	cout << "ID: " << clients.at(i).getId() << "\t\tName: " <<
+		clients.at(i).getName() << "\tSubscription Date: " <<
+		clients.at(i).getSubscriptionDate().getDate() << "\t\tAmount Spent: " <<
+		clients.at(i).getAmountSpent();
 	position = i;
 	clientFound = true;
 }
@@ -427,7 +428,7 @@ int Supermarket::getMaxId(){
 
 	sort(ids.begin(), ids.end());
 
-	return ids.at(ids.size()-1);
+	return ids.at(ids.size() - 1);
 }
 
 void Supermarket::addClient(){
@@ -435,7 +436,7 @@ void Supermarket::addClient(){
 	string date;
 	ofstream outfile;
 
-	lastClientAddedId += 1;
+	//lastClientAddedId += 1;
 
 	nClients += 1;
 
@@ -455,7 +456,7 @@ void Supermarket::addClient(){
 
 	cin.clear();
 
-	clients.push_back(Client(getMaxId()+1, name, Date(date), 0));
+	clients.push_back(Client(getMaxId() + 1, name, Date(date), 0));
 	cout << "Client added with success.\n\n";
 
 }
@@ -499,7 +500,7 @@ void Supermarket::deleteClient(){
 	nClients += 1;
 }
 
-void Supermarket::createTransaction(){		
+void Supermarket::createTransaction(){
 	int i, op;
 	int id;
 	Date date;
@@ -577,27 +578,27 @@ void Supermarket::createTransaction(){
 	}
 	nTransactions += 1;
 	cout << endl << "Successful purchase." << endl;
-}		
+}
 
 vector<Client*> Supermarket::bottomTen(){
 	int i, j;
 	Client* tempClient;
 	vector<Client*> clientsByOrder;
 
-	for ( i = 0; i < clients.size();i++){
+	for (i = 0; i < clients.size(); i++){
 		clientsByOrder.push_back(&clients.at(i));
 		j = clientsByOrder.size() - 1;
-		while (j > 0 && (clientsByOrder.at(j)->getAmountSpent() < clientsByOrder.at(j-1)->getAmountSpent())){
+		while (j > 0 && (clientsByOrder.at(j)->getAmountSpent() < clientsByOrder.at(j - 1)->getAmountSpent())){
 			tempClient = clientsByOrder.at(j);
-			clientsByOrder.at(j) = clientsByOrder.at(j-1);
-			clientsByOrder.at(j-1) = tempClient;
+			clientsByOrder.at(j) = clientsByOrder.at(j - 1);
+			clientsByOrder.at(j - 1) = tempClient;
 			j--;
 		}
 	}
 	int pos = clientsByOrder.size();
 	while (pos > 10){
 		clientsByOrder.erase(clientsByOrder.begin() + (pos - 1));
-		pos -- ;
+		pos--;
 	}
 
 	cout << endl << endl;
@@ -638,16 +639,18 @@ void Supermarket::runRecomendationSystem(){
 			callPersonalizedAdvertising(bottomTen().at(i));
 }
 
-	void Supermarket::callPersonalizedAdvertising(Client* client){
+void Supermarket::callPersonalizedAdvertising(Client* client){
 
-	RecomendationSystem clientSelected(this, client);
-	if (clientSelected.personalizedAdvertising() == NULL)
+	RecomendationSystem clientSelected = RecomendationSystem(this, client);
+	Product* suggestedProduct = clientSelected.personalizedAdvertising();
+
+	if (suggestedProduct == NULL)
 		cout << "We couldn't find a suitable product for you.\n\n";
 	else
 		cout << "We suggest you this product: \n";
-		cout << setw(30) << clientSelected.personalizedAdvertising->getName() <<
+	cout << setw(30) << suggestedProduct->getName() <<
 		setw(15) << "|" <<
-		setw(20) << clientSelected.personalizedAdvertising->getPrice() << endl;
+		setw(20) << suggestedProduct->getPrice() << endl;
 }
 
 void Supermarket::save(){
@@ -658,7 +661,7 @@ void Supermarket::save(){
 
 	outfile << nClients << endl;
 
-	for (i = 0; i < clients.size()-1; i++){
+	for (i = 0; i < clients.size() - 1; i++){
 		outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent() << endl;
 	}
 	outfile << clients.at(i).getId() << ";" << clients.at(i).getName() << ";" << clients.at(i).getSubscriptionDate().getDate() << ";" << clients.at(i).getAmountSpent();
@@ -668,7 +671,7 @@ void Supermarket::save(){
 
 	outfile << nProducts << endl;
 
-	for (i = 0; i < products.size()-1; i++){
+	for (i = 0; i < products.size() - 1; i++){
 		outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice() << endl;
 	}
 	outfile << products.at(i)->getName() << ";" << products.at(i)->getPrice();
@@ -678,7 +681,7 @@ void Supermarket::save(){
 
 	outfile << nTransactions << endl;
 
-	for (i = 0; i < transactions.size()-1; i++){
+	for (i = 0; i < transactions.size() - 1; i++){
 		outfile << transactions.at(i).getId() << ";" << transactions.at(i).getClientId() << ";" << transactions.at(i).getDate().getDate() << ";"
 			<< transactions.at(i).getProducts().at(0)->getName();
 
@@ -724,7 +727,7 @@ void Supermarket::invalidInput(string& input, string msg){
 
 void Supermarket::invalidInput(string& input){
 
-	while(cin.fail()) {
+	while (cin.fail()) {
 		cerr << "Invalid name! Please enter a different one: \n";
 		cin.clear();
 		cin.ignore(256, '\n');

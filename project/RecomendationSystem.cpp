@@ -8,13 +8,14 @@ RecomendationSystem::RecomendationSystem(Supermarket* supermarket, Client* targe
 	this->supermarket = supermarket;
 	this->targetClient = targetClient;
 
-	for (int i = 0; i < supermarket->getClients().size(); i++){
+	for (int i = 0; i < supermarket->getMaxId(); i++){
+		matrix.push_back(vector<bool>());
 		for (int j = 0; j < supermarket->getProducts().size(); j++){
 			matches.push_back(make_pair(0, j));
 			mismatches.push_back(0);
-			matrix.at(i).at(j) = false;
+			matrix.at(i).push_back(false);
 			if (i == targetClientID)
-				targetClientProducts.at(j) = false;
+				targetClientProducts.push_back(false);
 		}
 	}
 }
@@ -61,7 +62,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 		idSelectedClients.back() = matches.at(i).second;
 		i++;
 	}
-	while (matches.at(i + 1).first == matches.at(i).first && i<matches.size()){
+	while (matches.at(i + 1).first == matches.at(i).first && i<matches.size()-1){
 		idSelectedClients.push_back(matches.at(i + 1).second);
 		i++;
 	}
