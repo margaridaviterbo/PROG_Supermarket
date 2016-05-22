@@ -459,7 +459,7 @@ void Supermarket::addClient(){
 	cin.clear();
 
 	clients.push_back(Client(getMaxId() + 1, name, Date(date), 0));
-	cout << "Client added with success.\n\n";
+	cout << "\nClient added with success.\n\n";
 
 }
 

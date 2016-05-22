@@ -9,11 +9,13 @@ RecomendationSystem::RecomendationSystem(Supermarket* supermarket, Client* targe
 	this->targetClient = targetClient;
 
 	matrix.push_back(vector<bool>());
+	matches.push_back(make_pair(0, 0));
+	mismatches.push_back(0);
 	for (int i = 1; i <= supermarket->getMaxId(); i++){
 		matrix.push_back(vector<bool>());
+		matches.push_back(make_pair(0, i));
+		mismatches.push_back(0);
 		for (int j = 0; j < supermarket->getProducts().size(); j++){
-			matches.push_back(make_pair(0, j));
-			mismatches.push_back(0);
 			matrix.at(i).push_back(false);
 			if (i == targetClientID)
 				targetClientProducts.push_back(false);
@@ -36,7 +38,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	}
 
 
-	for (i = 1; i <= matrix.size(); i++){
+	for (i = 1; i < matrix.size(); i++){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (targetClientProducts.at(j) == true && matrix.at(i).at(j) == true)
 				matches.at(i).first++;
@@ -46,7 +48,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 	}
 
 	bool found = false;
-	for (i = 1; i <= matches.size(); i++){
+	for (i = 1; i < matches.size(); i++){
 		if (matches.at(i).first != 0)
 			found = true;
 	}
@@ -55,31 +57,35 @@ Product* RecomendationSystem::personalizedAdvertising(){
 
 	sort(matches.begin(), matches.end());
 	reverse(matches.begin(), matches.end());
+	idSelectedClients.push_back(0);
 	idSelectedClients.push_back(matches.at(1).second);
 
 	i = 1;
-	while (mismatches.at(matches.at(i).first) == 0 && i<=matches.size()){
+	while (mismatches.at(matches.at(i).second) == 0 && i<matches.size()){
 		idSelectedClients.back() = matches.at(i).second;
 		i++;
 	}
-	while (matches.at(i + 1).first == matches.at(i).first && i<=matches.size()-1){
+
+	i = 1;
+	while ((i<matches.size() - 1) && (matches.at(i + 1).first == matches.at(i).first)){
 		idSelectedClients.push_back(matches.at(i + 1).second);
 		i++;
 	}
 
 	found = false;
 	int k;
-	for (i = 1; i <= idSelectedClients.size(); i++){
+	selectedProducts.push_back(make_pair(0, nullptr));
+	for (i = 1; i < idSelectedClients.size(); i++){
 		for (j = 0; j < matrix.at(i).size(); j++){
 			if (matrix.at(idSelectedClients.at(i)).at(j) == true && targetClientProducts.at(j) == false){
-				for (k = 0; k < selectedProducts.size(); k++){
-					if (selectedProducts.at(k).second->getName() == supermarket->getProducts().at(j)->getName())
+				for (k = 1; k < selectedProducts.size(); k++){
+					if (selectedProducts.at(k).second->getName() == supermarket->getProducts().at(j)->getName()){
 						found = true;
-				}
-				if (found == true)
-					selectedProducts.at(k).first++;
-				else{
-					selectedProducts.push_back(make_pair(1, supermarket->getProducts().at(j)));
+						if (found == true)
+							selectedProducts.at(k).first++;
+						else
+							selectedProducts.push_back(make_pair(1, supermarket->getProducts().at(j)));
+					}
 				}
 			}
 		}
