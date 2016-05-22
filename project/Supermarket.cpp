@@ -24,8 +24,8 @@ Supermarket::Supermarket(){
 	cout << endl << endl;
 }
 
-int Supermarket::getPosition(){
-	return position;
+int Supermarket::getPositionProduct(){
+	return positionProduct;
 }
 
 vector<Client>& Supermarket::getClients(){
@@ -154,7 +154,7 @@ Product* Supermarket::getProduct(string productName){
 	int i = 0;
 	while (i < products.size()){
 		if (products.at(i)->isEqual(productName)){
-			position = i;
+			positionProduct = i;
 			return products.at(i);
 		}
 		i++;
@@ -252,7 +252,7 @@ void Supermarket::printTransactions(){
 	}
 }
 
-void Supermarket::searchClient(){
+bool Supermarket::searchClient(){
 	int i;
 	int op;
 	int id;
@@ -303,10 +303,12 @@ void Supermarket::searchClient(){
 			}
 		}
 	}
-	if (clientFound == false)
-		cout << "Client not found.";
-
-	/*return;*/
+	if (clientFound == false){
+ 		cout << "Client not found.";
+		return false;
+	}
+	else
+		return true;
 }
 
 void Supermarket::printSelectedClient(int i){
@@ -529,14 +531,22 @@ void Supermarket::createTransaction(){
 		while (clientFound == false)
 			searchClient();
 	}
+	cout << position;
 
 	if (op == 2){
 		addClient();
 	}
 
+	cout << endl << position;
+
 	printProducts();
+
+	cout << endl << position;
+
 	cout << "Insert products to buy (separated by comma without spaces and end with period): ";
 	getline(cin, str_products);
+
+	cout << endl << position;
 
 	invalidInput(str_products, "Invalid input!\n");
 
@@ -556,6 +566,8 @@ void Supermarket::createTransaction(){
 	str_products.clear();
 	productName.clear();
 
+	cout << endl << position;
+
 	cout << "Date of the purchase (dd/mm/yyyy): ";
 	cin >> date_str;
 	cout << endl;
@@ -565,6 +577,8 @@ void Supermarket::createTransaction(){
 	date = Date(date_str);
 
 	id = transactions.back().getId() + 1;
+
+	cout << endl << position;
 
 	if (op == 1){
 		transactions.push_back(Transaction(id, clients.at(position).getId(), date, productsTransaction));
@@ -601,14 +615,19 @@ vector<Client*> Supermarket::bottomTen(){
 		pos--;
 	}
 
+	return clientsByOrder;
+}
+
+void Supermarket::printBottomTen(){
+	vector<Client*> clientsByOrder = bottomTen();
+
 	cout << endl << endl;
-	for (i = 0; i < clientsByOrder.size(); i++){
+	for (int i = 0; i < clientsByOrder.size(); i++){
 		cout << i + 1 << "o:\t" << "ID: " << setw(10) << clientsByOrder.at(i)->getId() << setw(10) << "Name: " << setw(10) <<
 			clientsByOrder.at(i)->getName() << setw(40) << "\tSubscription Date: " << setw(10) <<
 			clientsByOrder.at(i)->getSubscriptionDate().getDate() << setw(20) << "Amount Spent: " <<
 			clientsByOrder.at(i)->getAmountSpent() << endl;
 	}
-	return clientsByOrder;
 }
 
 void Supermarket::runRecomendationSystem(){
@@ -630,9 +649,12 @@ void Supermarket::runRecomendationSystem(){
 	}
 
 	if (op == 1){
-		searchClient();
-		cout << endl << endl;
-		callPersonalizedAdvertising(&clients.at(position));
+		if (searchClient()==false)
+			cout << "We couldn't find a suitable product because the client doesn't exist.\n\n";
+		else{
+			cout << endl << endl;
+			callPersonalizedAdvertising(&clients.at(position));
+		}
 	}
 	else
 		for (int i = 0; i < bottomTen().size(); i++)
@@ -646,11 +668,12 @@ void Supermarket::callPersonalizedAdvertising(Client* client){
 
 	if (suggestedProduct == NULL)
 		cout << "We couldn't find a suitable product for you.\n\n";
-	else
+	else{
 		cout << "We suggest you this product: \n";
-	cout << setw(30) << suggestedProduct->getName() <<
-		setw(15) << "|" <<
-		setw(20) << suggestedProduct->getPrice() << endl;
+		cout << setw(30) << suggestedProduct->getName() <<
+			setw(15) << "|" <<
+			setw(20) << suggestedProduct->getPrice() << endl;
+	}
 }
 
 void Supermarket::save(){

@@ -147,7 +147,7 @@ void selectOption(int op, Supermarket &supermarket){
 		break;
 	case BOTTOM_10:
 		space();
-		supermarket.bottomTen();
+		supermarket.printBottomTen();
 		endMenu(supermarket);
 		break;
 	case RECOMENDATION_SYSTEM:

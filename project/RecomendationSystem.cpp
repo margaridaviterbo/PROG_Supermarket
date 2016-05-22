@@ -27,13 +27,12 @@ Product* RecomendationSystem::personalizedAdvertising(){
 		clientID = supermarket->getTransactions().at(i).getClientId();
 		for (j = 0; j < supermarket->getTransactions().at(i).getProducts().size(); j++){
 			if (supermarket->getProduct(supermarket->getTransactions().at(i).getProducts().at(j)->getName()) != NULL){
-				matrix.at(clientID).at(supermarket->getPosition()) = true;
+				matrix.at(clientID).at(supermarket->getPositionProduct()) = true;
 				if (clientID == targetClientID)
-					targetClientProducts.at(supermarket->getPosition()) = true;
+					targetClientProducts.at(supermarket->getPositionProduct()) = true;
 			}
 		}
 	}
-
 
 
 	for (i = 0; i < matrix.size(); i++){

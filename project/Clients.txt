@@ -1,13 +1,13 @@
 12
+13;Ana Brandao Mota;23/02/2016;1.1
 1;Beatriz Sousa Coelho;17/05/2016;44.85
 12;Catarina Nunes;17/10/2016;35.5
 3;Diogo Coelho Tomas Simoes;30/01/2016;17.8
-4;Filipa Corte-Real Farinha Beirao;23/01/2016;8.75
-5;Joao Vicente Marques Pinheiro-Torres;31/06/2016;30.05
+4;Filipa Corte-Real Beirao;23/01/2016;5.1
+5;Joao Vicente Marques Pinheiro-Torres;31/06/2016;33.3
 6;Manuel Augusto Bernardo Marques;04/06/2016;18.65
-7;Marco Pinheiro;30/11/2016;10.6
+7;Marco Pinheiro;30/11/2016;7.7
 2;Margarida Viterbo;17/05/2016;15.15
-8;Maria Ines Tavares Silva;13/06/2016;12.15
-11;Maria Sousa;13/05/2016;0
-10;Pedro Jose Lourenco Azevedo;11/08/2016;5.1
-13;Joao Chaves;05/05/2016;0
+11;Maria Sousa;13/05/2016;10.4
+14;Marta Sofia Mendes Nogueira;20/07/2016;19
+10;Pedro Jose Lourenco Azevedo;11/08/2016;41.95

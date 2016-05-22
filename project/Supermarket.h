@@ -23,6 +23,7 @@ private:
 	string transactionFile;
 	/*int lastClientAddedId;*/
 	int position;
+	int positionProduct;
 	bool clientFound;
 	bool transactionFound;
 	vector<Client> clients;
@@ -30,7 +31,7 @@ private:
 	vector<Transaction> transactions;
 public:
 	Supermarket();
-	int getPosition();
+	int getPositionProduct();
 	vector<Client>& getClients();
 	vector<Product*>& getProducts();
 	vector<Transaction>& getTransactions();
@@ -41,7 +42,7 @@ public:
 	void printClients();
 	void printProducts();
 	void printTransactions();
-	void searchClient();
+	bool searchClient();
 	void printSelectedClient(int i);
 	void searchTransaction();
 	void printSelectedTransaction(int i);
@@ -50,6 +51,7 @@ public:
 	void deleteClient();
 	void createTransaction();
 	vector<Client*> bottomTen();
+	void printBottomTen();
 	void runRecomendationSystem();
 	void callPersonalizedAdvertising(Client* client);
 	void save();
