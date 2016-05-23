@@ -52,7 +52,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 		if (matches.at(i).first != 0)
 			found = true;
 	}
-	if (found = false)
+	if (!found)
 		return NULL;
 
 	sort(matches.begin(), matches.end());
@@ -81,7 +81,7 @@ Product* RecomendationSystem::personalizedAdvertising(){
 				for (k = 1; k < selectedProducts.size(); k++){
 					if (selectedProducts.at(k).second->getName() == supermarket->getProducts().at(j)->getName()){
 						found = true;
-						if (found == true)
+						if (found)
 							selectedProducts.at(k).first++;
 						else
 							selectedProducts.push_back(make_pair(1, supermarket->getProducts().at(j)));

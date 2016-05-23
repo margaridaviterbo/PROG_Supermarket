@@ -510,7 +510,7 @@ void Supermarket::deleteClient(){
 		cout << "\n\nClient deleted with success.";
 	}
 
-	nClients += 1;
+	nClients -= 1;
 }
 
 void Supermarket::createTransaction(){

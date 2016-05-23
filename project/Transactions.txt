@@ -1,18 +1,22 @@
-17
+21
 1;3;30/01/2016;coffee,spaghetti sauce
 2;9;05/05/2016;cheese,diet cereals,sandwich bags,shaving cream,paper towels,fish
 3;1;17/05/2016;nutella,flour,batteries,apples,frozen vegetables,rice
-4;2;17/05/2016;pinneaple,tea,orange cake,butter
-5;6;04/06/2016;dishwashing liquid,dog food,chocolate cookies
-6;8;13/06/2016;cheese,tomatos,diet cereals,yogurts,ice cream
+4;2;17/05/2016;pineapple,tea,orange cake,butter
+5;6;04/06/2016;dishwasher liquid,dog food,chocolate cookies
+6;8;13/06/2016;cheese,tomatoes,diet cereals,yogurts,ice cream
 7;5;31/06/2016;coffee,spaghetti sauce,butter
-8;2;31/10/2016;cheese,tomatos,diet cereals,yogurts,frozen vegetables,rice
-9;5;12/11/2016;dog food,chocolate cookies,beef,shaving cream,paper towels,fish,dishwashing liquid
-10;7;30/11/2016;cheese,tomatos,diet cereals,yogurts
+8;2;31/10/2016;cheese,tomatoes,diet cereals,yogurts,frozen vegetables,rice
+9;5;12/11/2016;dog food,chocolate cookies,beef,shaving cream,paper towels,fish,dishwasher liquid
+10;7;30/11/2016;cheese,tomatoes,diet cereals,yogurts
 11;5;15/07/2016;diapers,soap
 12;12;17/10/2016;batteries
 13;13;13/12/2016;pork
 14;4;13/04/2016;coffee,spaghetti sauce,butter,soap
 15;11;17/08/2016;cheese,diet cereals,sandwich bags,shaving cream
 16;10;15/11/2016;nutella,flour,batteries,frozen vegetables,rice
-17;14;04/12/2016;pinneaple,tea,orange cake,butter,dog food,chocolate cookies
+17;14;04/12/2016;pineapple,tea,orange cake,butter,dog food,chocolate cookies
+18;18;21/07/2016;dog food
+19;4;05/05/2016;dog food
+20;15;03/04/2016;beef,pork,fish
+21;17;05/11/2014;beef,pork,fish

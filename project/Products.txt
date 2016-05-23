@@ -1,4 +1,4 @@
-50
+49
 coffee;0.5
 tea;0.6
 juice;0.8
@@ -6,9 +6,9 @@ bread;0.2
 chocolate cookies;0.9
 bagels;1.1
 orange cake;1.9
-tomatos;0.45
+tomatoes;0.45
 lettuce;0.3
-potatos;0.25
+potatoes;0.25
 spaghetti sauce;2.3
 ketchup;1.45
 cheese;1.75
@@ -33,9 +33,9 @@ pork;1.1
 fish;4.1
 apples;0.7
 pears;0.8
-pinneaple;1.5
+pineapple;1.5
 laundry detergent;3.8
-dishwashing liquid;1.85
+dishwasher liquid;1.85
 paper towels;0.75
 toilet paper;1.1
 aluminum foil;2.35
